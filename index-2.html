@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Wild_Studio Entertainment — Cataclism's Edge</title>
+<link href="assets/eade656909bc.png" rel="icon" type="image/png"/>
+<style>
+:root{--bg:#050507;--panel:#0d0d12;--line:#2a151b;--text:#f4f1f2;--muted:#99939a;--red:#e21d3f;--purple:#6d36a8}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif}
+/* Subtle corrupted-tendril pixel motif derived from the supplied reference art. */
+body{background-color:var(--bg);background-image:linear-gradient(rgba(5,5,7,.76),rgba(5,5,7,.76)),url("assets/7b29f624cd1f.jpg");background-repeat:repeat;background-size:auto,640px 136px;background-attachment:fixed}
+
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,transparent 0 5px,rgba(255,255,255,.018) 6px);z-index:10}
+nav{position:fixed;top:0;left:0;right:0;z-index:20;display:flex;justify-content:space-between;align-items:center;padding:18px 5vw;background:rgba(5,5,7,.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.brand{font-weight:900;letter-spacing:.12em}.brand span{color:var(--red)}.brand-logo{display:block;width:170px;height:54px;object-fit:contain;object-position:left center}
+nav a{color:#c7c1c5;text-decoration:none;margin-left:24px;font-size:12px;letter-spacing:.14em;text-transform:uppercase}
+nav a:hover{color:white}
+.hero{min-height:100vh;display:grid;place-items:center;padding:130px 7vw 70px;position:relative;overflow:hidden;background:radial-gradient(circle at 75% 40%,rgba(109,54,168,.23),transparent 35%),radial-gradient(circle at 20% 65%,rgba(226,29,63,.12),transparent 30%)}
+.hero:after{content:"";position:absolute;width:560px;height:560px;border:1px solid rgba(226,29,63,.22);border-radius:50%;right:-180px;top:18%;box-shadow:0 0 90px rgba(226,29,63,.08)}
+.kicker{color:var(--red);font-size:12px;letter-spacing:.3em;text-transform:uppercase;margin-bottom:20px}
+h1{font-size:clamp(58px,11vw,150px);line-height:.82;margin:0;letter-spacing:-.07em;text-transform:uppercase;max-width:1000px}
+.hero p{max-width:650px;color:#b4afb4;font-size:18px;line-height:1.7;margin:30px 0}
+.actions{display:flex;gap:12px;flex-wrap:wrap}.btn{padding:15px 22px;border:1px solid #4b2029;background:#10090c;color:white;text-decoration:none;text-transform:uppercase;letter-spacing:.12em;font-size:11px}.btn.primary{background:var(--red);border-color:var(--red)}.btn:hover{transform:translateY(-2px)}
+.warning{border-block:1px solid #35151c;background:#10070a;color:#d65a6e;padding:13px 5vw;text-align:center;font-size:11px;letter-spacing:.2em;text-transform:uppercase}
+section{padding:100px 7vw;border-bottom:1px solid var(--line)}.eyebrow{color:var(--red);letter-spacing:.22em;text-transform:uppercase;font-size:11px}h2{font-size:clamp(38px,6vw,76px);margin:10px 0 35px;letter-spacing:-.04em}
+.game{display:grid;grid-template-columns:1.3fr .7fr;gap:35px;align-items:stretch}.card{background:linear-gradient(145deg,#121017,#09090c);border:1px solid #2c1a20;padding:38px;position:relative;overflow:hidden}.card:after{content:"";position:absolute;inset:auto -80px -120px auto;width:300px;height:300px;border-radius:50%;background:rgba(226,29,63,.14);filter:blur(20px)}
+.game-title{font-size:clamp(42px,6vw,82px);font-weight:900;text-transform:uppercase;line-height:.9;margin:0 0 18px}.muted{color:var(--muted);line-height:1.7}.tag{display:inline-block;border:1px solid #45202a;color:#d6a4ad;padding:7px 10px;font-size:10px;letter-spacing:.16em;margin:5px 4px 0 0}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.tile{min-height:210px;border:1px solid #24181d;background:#0a0a0e;padding:26px;display:flex;flex-direction:column;justify-content:end}.tile strong{font-size:25px;text-transform:uppercase}.tile span{color:#8e888e;font-size:13px;margin-top:8px}.development-current{margin-top:30px;border:1px solid #5b2030;background:linear-gradient(145deg,#120d12,#09090c);padding:34px;position:relative;overflow:hidden}.development-current:after{content:"";position:absolute;right:-90px;bottom:-120px;width:300px;height:300px;border-radius:50%;background:rgba(226,29,63,.13);filter:blur(25px)}.development-label,.development-status{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#e22d46}.development-title{font-size:clamp(42px,6vw,78px);font-weight:900;text-transform:uppercase;letter-spacing:-.04em;margin:8px 0}.development-current p,.development-game p{color:#8e888e;margin:0;max-width:700px}.development-heading{margin:42px 0 16px;font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:#aaa}.development-games{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}.development-game{min-height:175px;border:1px solid #24181d;background:#0a0a0e;padding:26px;display:flex;flex-direction:column;justify-content:flex-end;transition:transform .2s,border-color .2s,background .2s}.development-game:hover{transform:translateY(-4px);border-color:#642335;background:#0d0a0e}.development-game h3{font-size:27px;text-transform:uppercase;margin:10px 0 7px}.development-note{margin-top:22px;color:#5f5a60;font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+footer{padding:45px 7vw;display:flex;justify-content:space-between;color:#777;font-size:11px;letter-spacing:.12em;text-transform:uppercase}
+@media(max-width:800px){nav a{display:none}.game{grid-template-columns:1fr}.grid{grid-template-columns:1fr}section{padding:75px 6vw}.hero{padding-inline:6vw}footer{display:block;line-height:2}}@media(max-width:800px){.development-games{grid-template-columns:1fr}.development-current{padding:26px}.development-game{min-height:150px}}
+
+.section-intro{max-width:720px;color:#9d979d;line-height:1.7;margin:-18px 0 35px}
+.character-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.character-card{position:relative;min-height:650px;overflow:hidden;border:1px solid #302027;background:#09090c}
+.character-card img{width:100%;height:100%;min-height:650px;object-fit:cover;display:block;filter:saturate(.9) contrast(1.04);transition:transform .5s,filter .5s}
+.character-card:hover img{transform:scale(1.025);filter:saturate(1.1) contrast(1.08)}
+.character-overlay{position:absolute;inset:auto 0 0;padding:70px 28px 28px;background:linear-gradient(transparent,rgba(3,3,5,.96) 42%);z-index:2}
+.character-overlay h3{font-size:44px;line-height:.95;text-transform:uppercase;margin:6px 0}
+.character-overlay p{color:#bcb5bb;margin:8px 0 16px}
+.lore-btn{cursor:pointer;border:1px solid #56232d;background:#12080c;color:#fff;padding:11px 15px;text-transform:uppercase;letter-spacing:.12em;font-size:10px}
+.lore-btn:hover{background:#e21d3f;border-color:#e21d3f}
+.lore-data{display:none}
+.lore-modal{position:fixed;inset:0;background:rgba(0,0,0,.82);backdrop-filter:blur(8px);z-index:100;display:none;place-items:center;padding:25px}
+.lore-modal.open{display:grid}
+.lore-panel{width:min(900px,100%);max-height:90vh;overflow:auto;background:#09090d;border:1px solid #4a2028;padding:35px;box-shadow:0 0 80px rgba(226,29,63,.12)}
+.lore-panel h3{font-size:clamp(38px,7vw,70px);margin:4px 0 24px;text-transform:uppercase;line-height:.9}
+.lore-panel h4{color:#e21d3f;text-transform:uppercase;letter-spacing:.16em;font-size:11px;margin:24px 0 8px}
+.lore-panel p{color:#bbb5bb;line-height:1.7}
+.close-lore{float:right;border:1px solid #392027;background:transparent;color:#aaa;padding:8px 12px;cursor:pointer}
+@media(max-width:800px){.character-grid{grid-template-columns:1fr}.character-card,.character-card img{min-height:560px}}
+
+.face-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
+.face-card{height:390px;outline:none;position:relative;overflow:hidden;border:1px solid #302027;background:#08080b;cursor:pointer;transition:transform .3s,border-color .3s,box-shadow .3s}
+.face-card:focus-visible{transform:translateY(-6px);border-color:#e21d3f;box-shadow:0 18px 50px rgba(226,29,63,.16)}
+.face-card:hover{transform:translateY(-6px);border-color:#e21d3f;box-shadow:0 18px 50px rgba(226,29,63,.16)}
+.face-card img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
+.face-card:hover img{transform:scale(1.06)}
+.face-shade{position:absolute;inset:0;background:linear-gradient(transparent 35%,rgba(3,3,5,.92))}
+.face-label{position:absolute;left:20px;right:20px;bottom:20px}
+.face-label span{display:block;color:#d15a6d;font-size:9px;letter-spacing:.18em;margin-bottom:7px}
+.face-label strong{display:block;font-size:30px;text-transform:uppercase;line-height:.95}
+.face-label em{display:block;color:#aaa;font-size:9px;letter-spacing:.14em;font-style:normal;margin-top:13px}
+.character-modal{position:fixed;inset:0;background:rgba(0,0,0,.9);backdrop-filter:blur(10px);z-index:100;display:none;overflow:auto;padding:35px}
+.character-modal.open{display:block}
+.character-window{max-width:1100px;margin:0 auto;background:#08080c;border:1px solid #4b2029;min-height:100%;box-shadow:0 0 100px rgba(226,29,63,.12)}
+.character-head{display:grid;grid-template-columns:330px 1fr;border-bottom:1px solid #2d1b20}
+.character-head img{width:100%;height:330px;object-fit:cover}
+.character-title{padding:40px 35px;display:flex;flex-direction:column;justify-content:end}
+.character-title .eyebrow{margin-bottom:10px}
+.character-title h3{font-size:clamp(44px,7vw,78px);line-height:.85;text-transform:uppercase;margin:0 0 12px}
+.character-title p{color:#9e989e;margin:0;line-height:1.6}
+.close-character{position:absolute;right:45px;top:45px;border:1px solid #51242e;background:#09080b;color:#fff;padding:10px 14px;cursor:pointer;z-index:3}
+.lore-body{padding:35px;display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.lore-section{border-left:2px solid #3a1d25;padding-left:18px}
+.lore-section h4{color:#e21d3f;text-transform:uppercase;letter-spacing:.16em;font-size:11px;margin:0 0 10px}
+.lore-section p{white-space:pre-line;color:#bdb7bd;line-height:1.75;margin:0}
+@media(max-width:1100px){.face-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:1100px){.face-grid{grid-template-columns:repeat(3,1fr)}.character-head{grid-template-columns:1fr}.character-head img{height:280px}.lore-body{grid-template-columns:1fr}}
+@media(max-width:700px){.face-grid{grid-template-columns:repeat(2,1fr)}.character-head{grid-template-columns:1fr}.character-head img{height:280px}.lore-body{grid-template-columns:1fr}}
+@media(max-width:600px){.face-grid{grid-template-columns:1fr}.face-card{height:430px}.character-modal{padding:10px}.character-title{padding:25px}.lore-body{padding:25px}.close-character{right:22px;top:22px}}
+
+.villain-card{border-color:#6a241f;box-shadow:0 0 0 1px rgba(255,72,25,.08)}
+.villain-card .face-label span{color:#ff6a2a}
+.villain-card:hover{border-color:#ff5a24;box-shadow:0 18px 55px rgba(255,72,25,.22)}
+
+/* Character archive interaction */
+.face-card{cursor:pointer}
+.face-card:focus-visible{outline:2px solid #e21d3f;outline-offset:3px}
+
+/* Stable interactive archive */
+.face-card{user-select:none}
+.face-card img{object-position:center top}
+.character-window{position:relative}
+.character-head img{object-position:center top}
+
+.character-category{margin-top:54px;padding-top:26px;border-top:1px solid #2c1a2e}
+.category-heading{margin-bottom:22px}
+.category-heading>span{font-size:10px;letter-spacing:.2em;color:#a45bda;text-transform:uppercase}
+.category-heading h3{font-size:clamp(27px,3vw,42px);line-height:1;text-transform:uppercase;margin:9px 0 10px;color:#f2edf7}
+.category-heading p{color:#8e8794;max-width:760px;margin:0}
+#characterCardsStaging{display:none!important}
+.hollowspire-title-screen{display:block;width:100%;max-width:1000px;max-height:440px;object-fit:contain;object-position:left center;margin-top:26px;border:1px solid #28203c;background:#000;box-shadow:0 0 45px rgba(178,27,255,.12)}
+@media(max-width:800px){.character-category{margin-top:38px}.hollowspire-title-screen{max-height:280px}}
+
+.category-empty{grid-column:1/-1;padding:1.4rem 1.2rem;border:1px dashed rgba(160,100,255,.35);border-radius:12px;color:#aaa1c0;background:rgba(20,12,35,.45);line-height:1.6}.hollowspire-title-screen{display:block;width:100%;max-width:100%;height:auto;object-fit:contain;border-radius:12px;margin-top:1.25rem;border:1px solid rgba(192,54,255,.3);box-shadow:0 0 32px rgba(160,40,255,.12)}
+
+/* Hollowspire soundtracks + community */
+.community-wrap{margin-top:2.5rem;display:grid;grid-template-columns:minmax(0,1.45fr) minmax(300px,.85fr);gap:22px;align-items:start}
+.soundtrack-section,.community-chat{border:1px solid rgba(161,65,255,.34);border-radius:16px;background:linear-gradient(145deg,rgba(21,12,34,.94),rgba(6,6,11,.98));padding:clamp(18px,3vw,30px);box-shadow:0 18px 55px rgba(0,0,0,.2)}
+.soundtrack-section{scroll-margin-top:90px}.soundtrack-topline{display:flex;gap:14px;justify-content:space-between;align-items:flex-start;flex-wrap:wrap}.soundtrack-section h3,.community-chat h3{font-size:clamp(25px,3vw,36px);margin:8px 0 10px;color:#f4edff}.community-chat h3{font-size:clamp(24px,2.5vw,31px)}
+.soundtrack-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:22px}.track-card{min-width:0;border:1px solid rgba(143,88,196,.25);border-radius:12px;padding:15px;background:rgba(7,6,13,.75)}.track-card h4{margin:0 0 5px;font-size:17px;color:#fff}.track-card .track-meta{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#a78ac8;margin-bottom:13px}.track-card audio{display:block;width:100%;height:38px;margin:10px 0 14px;accent-color:#b34dff}.track-actions{display:flex;gap:7px;flex-wrap:wrap}.track-action,.community-submit,.chat-send,.chat-clear{border:1px solid rgba(177,94,255,.42);border-radius:9px;background:#160e23;color:#eee5ff;padding:9px 12px;font:inherit;font-size:13px;cursor:pointer;transition:background .15s,border-color .15s,transform .15s}.track-action:hover,.community-submit:hover,.chat-send:hover,.chat-clear:hover{background:#2b1640;border-color:#c27aff;transform:translateY(-1px)}.track-action.liked{background:#41174f;border-color:#d56dff;color:#fff}.track-comments{margin-top:14px;border-top:1px solid rgba(177,94,255,.2);padding-top:12px}.track-comments summary{font-size:13px;color:#d9b7ff;cursor:pointer}.comment-list{display:grid;gap:8px;margin:10px 0}.comment-entry{font-size:13px;color:#d6cedf;background:rgba(255,255,255,.035);padding:8px 10px;border-radius:7px;overflow-wrap:anywhere}.comment-entry strong{color:#fff}.comment-form{display:flex;gap:7px;margin-top:8px}.comment-form input,.comment-form textarea,.chat-identity input,.chat-form textarea{width:100%;min-width:0;border:1px solid rgba(174,124,220,.3);border-radius:8px;background:#09070f;color:#f7f0ff;padding:10px;font:inherit;font-size:13px}.comment-form textarea{resize:vertical;min-height:42px;max-height:140px;flex:1}.comment-form button{flex-shrink:0}.community-note{font-size:12px;line-height:1.5;color:#a69bb3;margin:12px 0 0}.chat-identity{display:flex;gap:8px;margin:16px 0 12px}.chat-identity label{font-size:11px;color:#b9a4cf;display:block;margin-bottom:6px}.chat-identity>div{flex:1;min-width:0}.chat-status{font-size:11px;color:#d7b4ff;letter-spacing:.1em;text-transform:uppercase}.chat-messages{height:310px;overflow-y:auto;border:1px solid rgba(174,124,220,.22);border-radius:10px;padding:10px;background:rgba(0,0,0,.25);display:flex;flex-direction:column;gap:9px}.chat-message{max-width:100%;background:rgba(151,78,204,.1);border:1px solid rgba(151,78,204,.15);border-radius:9px;padding:9px 10px;overflow-wrap:anywhere}.chat-message .chat-name{font-size:12px;font-weight:700;color:#d8a5ff;margin-bottom:4px}.chat-message .chat-time{font-size:10px;color:#8d819c;margin-left:8px;font-weight:400}.chat-message p{font-size:13px;line-height:1.45;margin:0;color:#eee8f5;white-space:pre-wrap}.chat-form{margin-top:10px;display:grid;gap:8px}.chat-form textarea{resize:vertical;min-height:75px}.chat-form .chat-send{justify-self:end}.chat-footer{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:10px}.chat-clear{font-size:11px;padding:6px 9px;color:#c5b7d3}.soundtrack-jump{margin-top:18px}.soundtrack-jump .btn{cursor:pointer}.local-preview-label{display:inline-flex;align-items:center;gap:7px;border:1px solid rgba(213,170,74,.35);border-radius:999px;padding:6px 10px;color:#e7c975;font-size:10px;letter-spacing:.09em;text-transform:uppercase}
+@media(max-width:900px){.community-wrap{grid-template-columns:1fr}.chat-messages{height:260px}}
+@media(max-width:520px){.soundtrack-grid{grid-template-columns:1fr}.comment-form{flex-direction:column}.comment-form button{align-self:flex-start}.chat-identity{flex-direction:column}}
+
+/* FIXED: visible repeating corrupted-tendril background across the whole site */
+html, body { min-height:100%; background-color:#050507 !important; }
+body { position:relative; isolation:isolate; }
+body::before {
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  opacity:.23;
+  background-image:linear-gradient(rgba(0,0,0,.67),rgba(0,0,0,.67)),url("assets/5d1089f359eb.jpg");
+  background-repeat:repeat;
+  background-position:center top;
+  background-size:640px auto;
+  background-color:#050507;
+}
+/* Let the pattern show through the page canvas without reducing text contrast. */
+
+body > * { position:relative; z-index:1; }
+
+/* Hollowspire sprite-sheet previews */
+.hollowspire-sprite-section{margin:2.5rem 0;padding:clamp(18px,3vw,30px);border:1px solid rgba(161,65,255,.32);border-radius:16px;background:linear-gradient(145deg,rgba(15,10,24,.94),rgba(5,5,9,.96));box-shadow:0 18px 55px rgba(0,0,0,.2)}
+.hollowspire-sprite-section .sprite-kicker{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#b77bff}
+.hollowspire-sprite-section h3{font-size:clamp(25px,3vw,36px);margin:8px 0 10px;color:#f4edff}
+.hollowspire-sprite-intro{color:#aaa1b7;max-width:760px;line-height:1.65;margin-bottom:22px}
+.hollowspire-sprite-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.hollowspire-sprite-card{min-width:0;padding:12px;border:1px solid rgba(157,102,220,.25);border-radius:12px;background:rgba(0,0,0,.52)}
+.hollowspire-sprite-card:first-child{grid-column:1/-1}
+.hollowspire-sprite-card h4{margin:3px 0 7px;color:#f5efff;font-size:16px}
+.hollowspire-sprite-card p{margin:0 0 12px;color:#9f96ae;font-size:13px;line-height:1.55}
+.hollowspire-sprite-card img{display:block;width:100%;height:auto;max-height:560px;object-fit:contain;object-position:center;background:#05050a;border:1px solid rgba(160,95,240,.18);border-radius:8px;cursor:zoom-in}
+.hollowspire-sprite-card:first-child img{max-height:470px}
+.sprite-note{margin-top:14px;color:#81778e;font-size:12px}
+@media(max-width:700px){.hollowspire-sprite-grid{grid-template-columns:1fr}.hollowspire-sprite-card:first-child{grid-column:auto}.hollowspire-sprite-card img,.hollowspire-sprite-card:first-child img{max-height:none}}
+.sprite-lightbox{position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.92);display:none;align-items:center;justify-content:center;padding:18px;cursor:zoom-out}
+.sprite-lightbox.open{display:flex}.sprite-lightbox img{max-width:96vw;max-height:92vh;object-fit:contain;border:1px solid rgba(184,110,255,.55);box-shadow:0 0 45px rgba(150,50,255,.16)}.sprite-lightbox span{position:absolute;top:14px;right:20px;color:white;font-size:28px}
+
+.comment-entry .comment-tools{display:flex;gap:6px;margin-top:7px}.comment-edit,.comment-save,.comment-cancel{border:1px solid rgba(177,94,255,.35);border-radius:6px;background:#160e23;color:#eadbff;padding:5px 8px;font:inherit;font-size:11px;cursor:pointer}.comment-editbox{width:100%;min-height:64px;margin-top:7px;box-sizing:border-box;border:1px solid rgba(174,124,220,.35);border-radius:7px;background:#09070f;color:#f7f0ff;padding:8px;font:inherit;font-size:13px}.spell-option{display:inline-flex;align-items:center;gap:6px;color:#bca8d0;font-size:11px;margin-top:8px;cursor:pointer}.spell-option input{accent-color:#b34dff}
+
+</style>
+</head>
+<body>
+<nav><div class="brand"><img alt="Wild_Studio Entertainment logo" class="brand-logo" src="assets/688abbba7ba2.png"/></div><div><a href="#game">Game</a><a href="#characters">Characters</a><a href="#universe">Universe</a><a href="#studio">Studio</a><a href="#hollowspire-soundtracks">Soundtracks</a><a href="#community">Community</a></div></nav>
+<main>
+<section class="hero">
+<div>
+<div class="kicker">WSE // Transmission 001</div>
+<h1>The Edge<br/>of Everything.</h1>
+<p>Original games, characters, music, and worlds from Wild_Studio Entertainment. Reality is only the beginning.</p>
+<div class="actions"><a class="btn primary" href="#game">Enter Cataclism's Edge</a><a class="btn" href="#universe">Explore the Universe</a></div>
+</div>
+</section>
+<div class="warning">WILD_STUDIO ENTERTAINMENT // CATACLISM'S EDGE // IN DEVELOPMENT // DO NOT LOOK AWAY</div>
+<section id="game">
+<div class="eyebrow">Featured Project</div><h2>The catastrophe is only the beginning.</h2>
+<div class="game"><div class="card"><div class="game-title">Cataclism's<br/>Edge</div><p class="muted">A dimension-spanning adventure where broken realities collide and every character has a story worth uncovering.</p><span class="tag">IN DEVELOPMENT</span><span class="tag">ORIGINAL IP</span><span class="tag">WSE</span></div>
+<div class="card"><div class="eyebrow">System Notice</div><h3>Something is breaking through.</h3><p class="muted">Follow development, discover the characters, and enter the universe before the edge gives way.</p><a class="btn" href="#development">Development Log</a></div></div>
+</section>
+<section id="characters">
+<div class="eyebrow">Character Archive // EXPANDED</div>
+<h2>Meet the forces shaping the catastrophe.</h2>
+<p class="section-intro">Select any character to open their complete lore file. Every profile is interactive.</p>
+<div class="face-grid" id="characterCardsStaging">
+<article class="face-card" data-character="Dr. Cyco" role="button" tabindex="0">
+<img alt="Dr. Cyco character portrait" src="assets/199f34aa4585.jpg"/>
+<div class="face-shade"></div>
+<div class="face-label"><span>THE CORRUPT INNOVATOR</span><strong>Dr. Cyco</strong><em>Corrupt scientist // deal maker // VIEW FULL LORE →</em></div>
+</article>
+<article class="face-card" data-character="Overdrive" role="button" tabindex="0">
+<img alt="Overdrive character portrait" src="assets/d152d8a9866b.jpg"/>
+<div class="face-shade"></div>
+<div class="face-label"><span>HERO FROM THE FIFTH DIMENSION</span><strong>Overdrive</strong><em>Speed // justice // second chances // VIEW FULL LORE →</em></div>
+</article>
+<article class="face-card villain-card" data-character="The Corruption" role="button" tabindex="0">
+<img alt="The Corruption character portrait" src="assets/b8755f945694.jpg"/>
+<div class="face-shade"></div>
+<div class="face-label"><span>THE PERFECTING PLAGUE</span><strong>The Corruption</strong><em>Central threat // pure evil // VIEW FULL LORE →</em></div>
+</article>
+<article class="face-card" data-character="Gemineye" role="button" tabindex="0">
+<img alt="Gemineye character portrait" src="assets/4b3e5ccdd33e.jpg"/>
+<div class="face-shade"></div>
+<div class="face-label"><span>THE CORRUPTED JEWELER</span><strong>Gemineye</strong><em>Gems // obsession // corruption // VIEW FULL LORE →</em></div>
+</article>
+<article class="face-card villain-card" data-character="Override" role="button" tabindex="0">
+<img alt="Override character portrait" src="assets/27d1d04d27be.jpg"/>
+<div class="face-shade"></div>
+<div class="face-label"><span>MAIN VILLAIN // THE OVERRIDE LINE</span><strong>Override</strong><em>System threat // .EXE // .DIRE // VIEW FULL LORE →</em></div>
+</article>
+<article class="face-card" data-character="The Gem Observer" role="button" tabindex="0">
+<img alt="The Gem Observer character portrait" src="assets/30c2aa74b5a6.jpg"/>
+<div class="face-shade"></div>
+<div class="face-label"><span>WATCHER // REPORTER // GOD</span><strong>The Gem Observer</strong><em>Dimension 0 // perfect observation // VIEW FULL LORE →</em></div>
+</article>
+<article class="face-card villain-card" data-character="The Bezerker" role="button" tabindex="0">
+<img alt="The Bezerker character portrait" src="assets/cbf48031307b.jpg"/>
+<div class="face-shade"></div>
+<div class="face-label"><span>THE LAST REMNANT OF DIMENSION 2</span><strong>The Bezerker</strong><em>Guardian turned weapon // VIEW FULL LORE →</em></div>
+</article>
+<article class="face-card" data-character="The Mistory" role="button" tabindex="0">
+<img alt="The Mistory character portrait" src="assets/67d5221f9ab2.jpg"/>
+<div class="face-shade"></div>
+<div class="face-label"><span>A BEING // A QUESTION // A MAYBE</span><strong>The Mistory</strong><em>Unknown // reality-bending // VIEW FULL LORE →</em></div>
+</article>
+<article class="face-card" data-character="OMNI" role="button" tabindex="0">
+<img alt="OMNI character portrait" src="assets/57d36cc87816.jpg"/>
+<div class="face-shade"></div>
+<div class="face-label"><span>DIMENSION 8 AI // STRANDED IN DIMENSION 1</span><strong>OMNI</strong><em>Adapt // survive // understand // VIEW FULL LORE →</em></div>
+</article>
+<article class="face-card" data-character="Highwire" role="button" tabindex="0">
+<img alt="Highwire character portrait" src="assets/bf1d29b7eefc.jpg"/>
+<div class="face-shade"></div>
+<div class="face-label"><span>THE LAST GUARDIAN OF THE VALE</span><strong>Highwire</strong><em>Vale protector // lightning // water // VIEW FULL LORE →</em></div>
+</article>
+<article class="face-card" data-character="Killa Kae X" role="button" tabindex="0">
+<img alt="Killa Kae X character portrait" src="assets/71709ea272e2.jpg"/>
+<div class="face-shade"></div>
+<div class="face-label"><span>FIRE MANIPULATOR // TRACKER</span><strong>Killa Kae X</strong><em>Dimension 10 survivor // searching for M3C@ // VIEW FULL LORE →</em></div>
+</article>
+<article class="face-card" data-character="Kill Code" role="button" tabindex="0">
+<img alt="Kill Code character portrait" src="assets/8e0838e9e094.jpg"/>
+<div class="face-shade"></div>
+<div class="face-label"><span>MASTER HACKER // CODEBREAKER</span><strong>Kill Code</strong><em>Dimension 7 // robot controller // VIEW FULL LORE →</em></div>
+</article>
+<article class="face-card" data-character="M3C@" role="button" tabindex="0">
+<img alt="M3C@ character portrait" src="assets/20573e72e6c5.jpg"/>
+<div class="face-shade"></div>
+<div class="face-label"><span>ASSISTANCE ROBOT // CLASS UNKNOWN</span><strong>M3C@</strong><em>Dimension 10 survivor // adaptive arms // VIEW FULL LORE →</em></div>
+</article>
+<article class="face-card" data-character="Dusty" role="button" tabindex="0">
+<img alt="Dusty headshot" src="assets/17f596019d11.jpg"/>
+<div class="face-shade"></div>
+<div class="face-label"><span>MATTER MANIPULATOR</span><strong>Dusty</strong><em>Unknown dimension // matter shaping // VIEW FULL LORE →</em></div>
+</article>
+<article class="face-card" data-character="Starry" role="button" tabindex="0">
+<img alt="Starry headshot" src="assets/58e4c37dc65d.jpg"/>
+<div class="face-shade"></div>
+<div class="face-label"><span>CEO OF STARRY INC.</span><strong>Starry</strong><em>The Puppeteer’s art-creation service // VIEW FULL LORE →</em></div>
+</article>
+<article class="face-card" data-character="Puppeteer" role="button" tabindex="0">
+<img alt="Puppeteer headshot" src="assets/6d8665214a81.jpg"/>
+<div class="face-shade"></div>
+<div class="face-label"><span>GOD OF STRINGS AND TWISTED PLAY</span><strong>Puppeteer</strong><em>A living puppet who broke his strings // VIEW FULL LORE →</em></div>
+</article>
+<article class="face-card" data-character="The Crimson Priest" role="button" tabindex="0">
+<img alt="The Crimson Priest headshot" src="assets/434cbd7016b4.jpg"/>
+<div class="face-shade"></div>
+<div class="face-label"><span>PREACHER OF THE CORRUPTION</span><strong>The Crimson Priest</strong><em>Devotion, control, and crimson swarms // VIEW FULL LORE →</em></div>
+</article>
+<article class="face-card" data-character="Charcoal" role="button" tabindex="0">
+<img alt="Charcoal headshot" src="assets/6aa488f7f856.jpg"/>
+<div class="face-shade"></div>
+<div class="face-label"><span>THE CORRUPTION’S LIVING SIEGE WEAPON</span><strong>Charcoal</strong><em>An Underburn with a burning core // VIEW FULL LORE →</em></div>
+</article>
+<article class="face-card" data-character="Radioactive" role="button" tabindex="0">
+<img alt="Radioactive headshot" src="assets/fcfbc0d3bf79.jpg"/>
+<div class="face-shade"></div>
+<div class="face-label"><span>THE LIVING WASTE</span><strong>Radioactive</strong><em>A sentient radioactive life-form // VIEW FULL LORE →</em></div>
+</article>
+<article class="face-card" data-character="The Laughing Void" role="button" tabindex="0">
+<img alt="The Laughing Void headshot" src="assets/76b238c343ad.jpg"/>
+<div class="face-shade"></div>
+<div class="face-label"><span>THE SMILING ABYSS</span><strong>The Laughing Void</strong><em>A false familiar face from the void // VIEW FULL LORE →</em></div>
+</article>
+<article class="face-card" data-character="Mark Ilutionary" role="button" tabindex="0">
+<img alt="Mark Ilutionary headshot" src="assets/7a51a1381512.jpg"/>
+<div class="face-shade"></div>
+<div class="face-label"><span>EXPLOSIVES SPECIALIST</span><strong>Mark Ilutionary</strong><em>A problem solver with very little patience // VIEW FULL LORE →</em></div>
+</article>
+<article class="face-card" data-character="Reaper" role="button" tabindex="0">
+<img alt="Reaper headshot" src="assets/af7e449e0497.jpg"/>
+<div class="face-shade"></div>
+<div class="face-label"><span>THE EMBODIMENT OF DEATH</span><strong>Reaper</strong><em>A chill god who listens to music // VIEW FULL LORE →</em></div>
+</article>
+<article class="face-card" data-character="Emomoji" role="button" tabindex="0">
+<img alt="Emomoji headshot" src="assets/3288af024d98.jpg"/>
+<div class="face-shade"></div>
+<div class="face-label"><span>THE FAILED EXPERIMENT</span><strong>Emomoji</strong><em>A smile hiding a broken state // VIEW FULL LORE →</em></div>
+</article>
+</div>
+<div class="character-category" id="goldenCharactersSection">
+<div class="category-heading"><span>01 // ASCENDED FORMS</span><h3>Golden Characters</h3><p>Beings rebuilt, awakened, or elevated beyond their original limits.</p></div>
+<div class="face-grid" id="goldenCharactersGrid">
+
+<article class="face-card" data-character="Golden Ridge" role="button" tabindex="0"><img alt="Golden Ridge golden character reference sheet" src="assets/9b5a1e5179a9.jpg"/><div class="face-shade"></div><div class="face-label"><span>SCE-001 // THE GOLDEN RIDGE</span><strong>Golden Ridge</strong><em>The towering radiant entity shown in the SCE Foundation imagery. // VIEW FULL LORE →</em></div></article><article class="face-card" data-character="Golden Overdrive" role="button" tabindex="0"><img alt="Golden Overdrive golden character reference sheet" src="assets/7f01fc4dc426.jpg"/><div class="face-shade"></div><div class="face-label"><span>GOLDEN BROTHERHOOD // PURIFYING WARRIOR</span><strong>Golden Overdrive</strong><em>Purified Overdrive // speed beyond light // VIEW FULL LORE →</em></div></article><article class="face-card" data-character="Golden X" role="button" tabindex="0"><img alt="Golden X golden character reference sheet" src="assets/896d89f409a6.jpg"/><div class="face-shade"></div><div class="face-label"><span>GOLDEN BROTHERHOOD // PURIFYING WARRIOR</span><strong>Golden X</strong><em>Killa Kae X reborn whole through purification // VIEW FULL LORE →</em></div></article><article class="face-card" data-character="Golden Code" role="button" tabindex="0"><img alt="Golden Code golden character reference sheet" src="assets/90240cb6227e.jpg"/><div class="face-shade"></div><div class="face-label"><span>GOLDEN BROTHERHOOD // PURIFYING WARRIOR</span><strong>Golden Code</strong><em>Kill Code restored // codebreaker reborn // VIEW FULL LORE →</em></div></article><article class="face-card" data-character="Golden M3C@" role="button" tabindex="0">
+<img alt="Golden M3C@ golden armor character sheet" src="assets/1cce5131fd17.jpg"/>
+<div class="face-shade"></div><div class="face-label"><span>GOLDEN BROTHERHOOD // PURIFYING WARRIOR</span><strong>Golden M3C@</strong><em>Rebuilt beyond the original // VIEW FULL LORE →</em></div>
+</article></div>
+</div>
+<div class="character-category" id="alternateTimelinesSection">
+<div class="category-heading"><span>02 // FRACTURED REALITIES</span><h3>Alternate Timelines</h3><p>Different paths, altered identities, and versions shaped by choices that changed everything.</p></div>
+<div class="face-grid" id="alternateTimelinesGrid">
+<article class="face-card alternate-timeline-card" data-character="Overhorror" role="button" tabindex="0" aria-label="View Overhorror character profile">
+<img alt="Overhorror character reference sheet" loading="lazy" src="assets/5abf1ad3eb0c.jpg"/>
+<div class="face-shade"></div>
+<div class="face-label"><span>ALTERNATE TIMELINE // CONSUMPTION INCARNATE</span><strong>Overhorror</strong><em>A terrifying alternate version of Overdrive whose hunger consumed his timeline. // VIEW PROFILE →</em></div>
+</article>
+<article class="face-card alternate-timeline-card" data-character="Dr. L.G." role="button" tabindex="0" aria-label="View Dr. L.G. character profile">
+<img alt="Dr. L.G. character reference sheet" loading="lazy" src="assets/22c7b0e617a4.jpg"/>
+<div class="face-shade"></div>
+<div class="face-label"><span>ALTERNATE TIMELINE // THE LIFE INNOVATOR</span><strong>Dr. L.G.</strong><em>A brilliant healer who chose a different path, blending nature and nanotechnology to preserve life. // VIEW PROFILE →</em></div>
+</article>
+<article class="face-card alternate-timeline-card" data-character="Unhinged Overdrive" role="button" tabindex="0" aria-label="View Unhinged Overdrive character profile">
+<img alt="Unhinged Overdrive character reference sheet" loading="lazy" src="assets/0cada8f93055.jpg"/>
+<div class="face-shade"></div>
+<div class="face-label"><span>ALTERNATE TIMELINE // CORRUPTED ACCELERATION</span><strong>Unhinged Overdrive</strong><em>Overdrive pushed beyond his breaking point, transformed into a relentless corrupted predator. // VIEW PROFILE →</em></div>
+</article>
+</div>
+</div>
+<div class="character-category" id="baseCharactersSection">
+<div class="category-heading"><span>03 // ORIGINAL RECORDS</span><h3>Base Characters</h3><p>The original identities at the heart of the universe. Select any profile to open its lore file.</p></div>
+<div class="face-grid" id="baseCharactersGrid">
+<article class="face-card" data-character="Halpy" role="button" tabindex="0">
+<img alt="Halpy AI assistant character sheet" src="assets/9acd15fbc306.jpg"/>
+<div class="face-shade"></div><div class="face-label"><span>AI ASSISTANT // JESTER UNIT HLPY-0</span><strong>Halpy</strong><em>Helpful. Trustworthy. Probably unstable. // VIEW FULL LORE →</em></div>
+</article>
+<article class="face-card" data-character="Hubert" role="button" tabindex="0">
+<img alt="Hubert in normal clothes and masked costume" src="assets/7dcb2a8388a0.jpg"/>
+<div class="face-shade"></div><div class="face-label"><span>ORDINARY GUY // HIDDEN VILLAIN SIDE</span><strong>Hubert</strong><em>No powers. Dedicated gym-goer. More than he seems. // VIEW FULL LORE →</em></div>
+</article>
+<article class="face-card" data-character="Skillner" role="button" tabindex="0">
+<img alt="Skillner, Wally Stevens, character sheet" src="assets/a5f957dd3d27.jpg"/>
+<div class="face-shade"></div><div class="face-label"><span>WALLY STEVENS // ANTI-HERO</span><strong>Skillner</strong><em>He observes, learns, and reproduces abilities. // VIEW FULL LORE →</em></div>
+</article>
+</div>
+</div>
+</section>
+
+<section id="development">
+<div class="eyebrow">Development // Wild_Studio Games</div>
+<h2>Building the impossible.</h2>
+<p class="muted">Wild_Studio Entertainment is building a growing lineup of original games. These projects are works in progress, upcoming future games, and worlds still taking shape. The project currently being worked on is <strong>Hollow Spire</strong>.</p>
+<div class="development-current" id="hollowspire">
+<div class="development-label">CURRENT PROJECT // IN DEVELOPMENT</div>
+<div class="development-title">Hollowspire</div>
+<p>A Wild_Studio Entertainment game currently in active development.</p>
+<img alt="Hollowspire pixel-glitch title screen with blue lettering and magenta hands" class="hollowspire-title-screen" src="assets/768c02fe4771.jpg"/>
+<div class="soundtrack-jump"><a class="btn primary" href="#hollowspire-soundtracks" aria-label="Jump to Hollowspire soundtracks">♫ Sound Tracks</a> <a class="btn" href="#community">Join the Community Chat</a></div>
+</div>
+<div class="development-heading">Upcoming // Works in Progress</div>
+<div class="development-games">
+<article class="development-game">
+<div class="development-status">WORK IN PROGRESS // UPCOMING</div>
+<h3>Override's Assalt</h3>
+<p>Future Wild_Studio game currently in development.</p>
+</article>
+<article class="development-game">
+<div class="development-status">WORK IN PROGRESS // UPCOMING</div>
+<h3>Breaking The Code</h3>
+<p>Future Wild_Studio game currently in development.</p>
+</article>
+<article class="development-game">
+<div class="development-status">WORK IN PROGRESS // UPCOMING</div>
+<h3>The Hunt Is On</h3>
+<p>Future Wild_Studio game currently in development.</p>
+</article>
+<article class="development-game">
+<div class="development-status">WORK IN PROGRESS // UPCOMING</div>
+<h3>New Surroundings</h3>
+<p>Future Wild_Studio game currently in development.</p>
+</article>
+</div>
+<p class="development-note">More projects will be revealed as development continues.</p>
+</section>
+<section id="studio">
+<div class="eyebrow">The Studio</div><h2>Wild_Studio Entertainment.</h2>
+<p class="muted">We are an independent development studio and our goal right now is to make injoyable games, characters, and music for our community. We hope that everyone who sees our content enjoys and becomes accustomed to it. We are working on many 8-bit themed games and one big 3D game. We hope that our fandom and anyone outside it enjoys all of it.</p>
+</section>
+
+
+<section class="hollowspire-sprite-section" id="hollowspire-sprite-previews" aria-labelledby="hollowspire-sprite-title">
+<div class="sprite-kicker">Hollowspire // Development Archive</div>
+<h3 id="hollowspire-sprite-title">Sprite Previews</h3>
+<p class="hollowspire-sprite-intro">A first look at Hollowspire’s pixel-art characters and animation sets. Select any sheet to enlarge it and inspect the poses, attacks, and effects.</p>
+<div class="hollowspire-sprite-grid">
+<article class="hollowspire-sprite-card"><h4>The Laughing Void</h4><p>Pixel portrait, idle and walk cycles, Void Step, gestures, and reality-unravel poses.</p><img class="hollowspire-sprite-image" loading="lazy" src="assets/9339589550cc.jpg" alt="The Laughing Void Hollowspire sprite sheet preview" tabindex="0" role="button" aria-label="Enlarge The Laughing Void sprite sheet"></article>
+<article class="hollowspire-sprite-card"><h4>Serpent Null · SCE-008</h4><p>Idle, walk, run, jump, claw slash, tail whip, temporal manipulation, and ice effects.</p><img class="hollowspire-sprite-image" loading="lazy" src="assets/882c8406c2c3.jpg" alt="Serpent Null · SCE-008 Hollowspire sprite sheet preview" tabindex="0" role="button" aria-label="Enlarge Serpent Null · SCE-008 sprite sheet"></article>
+<article class="hollowspire-sprite-card"><h4>Purple Flame Entity</h4><p>Idle, walk, run, jump, energy blast, summon chains, reality-shatter, and effects previews.</p><img class="hollowspire-sprite-image" loading="lazy" src="assets/4b54905d8c53.jpg" alt="Purple Flame Entity Hollowspire sprite sheet preview" tabindex="0" role="button" aria-label="Enlarge Purple Flame Entity sprite sheet"></article>
+</div>
+<p class="sprite-note">Preview sheets only — these are character and animation references, not playable animations.</p>
+</section>
+<div class="sprite-lightbox" id="spriteLightbox" role="dialog" aria-modal="true" aria-label="Enlarged sprite sheet preview"><span aria-hidden="true">×</span><img alt="Enlarged Hollowspire sprite sheet"></div>
+
+<section class="community-wrap" aria-label="Hollowspire music and community">
+  <div class="soundtrack-section" id="hollowspire-soundtracks">
+    <div class="soundtrack-topline"><div><div class="eyebrow">Hollowspire // Audio Archive</div><h3>Sound Tracks</h3><p class="muted">Listen to the tracks, leave a comment, share a track, and show your support.</p></div><span class="local-preview-label">Interactive preview</span></div>
+    <div class="soundtrack-grid">
+      <article class="track-card" data-track="frosty-encounter"><h4>Frosty Encounter</h4><div class="track-meta">Boss theme · Hollowspire</div><audio controls preload="none" src="assets/0a16f40f110d.mp3"></audio><div class="track-actions"><button class="track-action like-button" type="button">♡ Like <span class="like-count">0</span></button><button class="track-action share-button" type="button">↗ Share</button></div><details class="track-comments"><summary>Comments (<span class="comment-count">0</span>)</summary><div class="comment-list"></div><form class="comment-form"><textarea spellcheck="true" lang="en" name="comment" maxlength="300" rows="2" placeholder="Write a comment…" aria-label="Comment on Frosty Encounter" spellcheck="true" required></textarea><button class="track-action" type="submit">Post</button><label class="spell-option"><input class="spell-toggle" type="checkbox" checked> Spell check</label><label class="spell-option"><input class="spell-toggle" type="checkbox" checked> Spell check</label></form></details></article>
+      <article class="track-card" data-track="gems-special"><h4>Gem's Special</h4><div class="track-meta">Character theme · Hollowspire</div><audio controls preload="none" src="assets/408de741b326.mp3"></audio><div class="track-actions"><button class="track-action like-button" type="button">♡ Like <span class="like-count">0</span></button><button class="track-action share-button" type="button">↗ Share</button></div><details class="track-comments"><summary>Comments (<span class="comment-count">0</span>)</summary><div class="comment-list"></div><form class="comment-form"><textarea spellcheck="true" lang="en" name="comment" maxlength="300" rows="2" placeholder="Write a comment…" aria-label="Comment on Gem's Special" required></textarea><button class="track-action" type="submit">Post</button><label class="spell-option"><input class="spell-toggle" type="checkbox" checked> Spell check</label></form></details></article>
+      <article class="track-card" data-track="credits"><h4>Credits</h4><div class="track-meta">End credits · Hollowspire</div><audio controls preload="none" src="assets/1f68bcd248c2.mp3"></audio><div class="track-actions"><button class="track-action like-button" type="button">♡ Like <span class="like-count">0</span></button><button class="track-action share-button" type="button">↗ Share</button></div><details class="track-comments"><summary>Comments (<span class="comment-count">0</span>)</summary><div class="comment-list"></div><form class="comment-form"><textarea spellcheck="true" lang="en" name="comment" maxlength="300" rows="2" placeholder="Write a comment…" aria-label="Comment on Credits" required></textarea><button class="track-action" type="submit">Post</button><label class="spell-option"><input class="spell-toggle" type="checkbox" checked> Spell check</label></form></details></article>
+      <article class="track-card" data-track="bye-bye-vince"><h4>Bye Bye Vince</h4><div class="track-meta">Character theme · Hollowspire</div><audio controls preload="none" src="assets/4e6759149b38.mp3"></audio><div class="track-actions"><button class="track-action like-button" type="button">♡ Like <span class="like-count">0</span></button><button class="track-action share-button" type="button">↗ Share</button></div><details class="track-comments"><summary>Comments (<span class="comment-count">0</span>)</summary><div class="comment-list"></div><form class="comment-form"><textarea spellcheck="true" lang="en" name="comment" maxlength="300" rows="2" placeholder="Write a comment…" aria-label="Comment on Bye Bye Vince" required></textarea><button class="track-action" type="submit">Post</button><label class="spell-option"><input class="spell-toggle" type="checkbox" checked> Spell check</label></form></details></article>
+      <article class="track-card" data-track="dark-void"><h4>Dark Void</h4><div class="track-meta">Atmosphere · Hollowspire</div><audio controls preload="none" src="assets/7402a6195e4c.mp3"></audio><div class="track-actions"><button class="track-action like-button" type="button">♡ Like <span class="like-count">0</span></button><button class="track-action share-button" type="button">↗ Share</button></div><details class="track-comments"><summary>Comments (<span class="comment-count">0</span>)</summary><div class="comment-list"></div><form class="comment-form"><textarea spellcheck="true" lang="en" name="comment" maxlength="300" rows="2" placeholder="Write a comment…" aria-label="Comment on Dark Void" required></textarea><button class="track-action" type="submit">Post</button><label class="spell-option"><input class="spell-toggle" type="checkbox" checked> Spell check</label></form></details></article>
+      <article class="track-card" data-track="scrapped-project"><h4>Scrapped Project</h4><div class="track-meta">Archive track · Hollowspire</div><audio controls preload="none" src="assets/1798524077e7.mp3"></audio><div class="track-actions"><button class="track-action like-button" type="button">♡ Like <span class="like-count">0</span></button><button class="track-action share-button" type="button">↗ Share</button></div><details class="track-comments"><summary>Comments (<span class="comment-count">0</span>)</summary><div class="comment-list"></div><form class="comment-form"><textarea spellcheck="true" lang="en" name="comment" maxlength="300" rows="2" placeholder="Write a comment…" aria-label="Comment on Scrapped Project" required></textarea><button class="track-action" type="submit">Post</button><label class="spell-option"><input class="spell-toggle" type="checkbox" checked> Spell check</label></form></details></article>
+    </div>
+    <p class="community-note">Likes and comments in this downloadable preview are saved only in this browser. Once the site is connected to a shared database, community activity can sync across visitors.</p>
+  </div>
+  <aside class="community-chat" id="community">
+    <div class="eyebrow">Wild_Studio // Community</div><h3>Community Chat</h3><p class="muted">Talk Hollowspire, share theories, and meet other fans.</p><div class="chat-status">● Chat room preview</div>
+    <div class="chat-identity"><div><label for="chatUsername">Your display name</label><input id="chatUsername" maxlength="24" placeholder="Choose a display name" autocomplete="nickname"></div></div>
+    <div class="chat-messages" id="chatMessages" role="log" aria-live="polite" aria-label="Community chat messages"><div class="comment-entry">Welcome to the Hollowspire community preview. Be respectful and keep personal information private.</div></div>
+    <form class="chat-form" id="chatForm"><textarea id="chatText" maxlength="500" placeholder="Say something to the community…" aria-label="Chat message" spellcheck="true" required></textarea><button class="chat-send" type="submit">Send Message ↗</button><label class="spell-option"><input id="chatSpellToggle" type="checkbox" checked> Spell check</label></form>
+    <div class="chat-footer"><span class="community-note">Demo messages stay on this device.</span><button class="chat-clear" id="clearChat" type="button">Clear local chat</button></div>
+    <p class="community-note">This is a working local preview, not yet a live multi-user chat. A shared chat requires a hosted database/service and moderation tools before publishing.</p>
+  </aside>
+</section>
+</main>
+<footer><span>WSEGames.com</span><span>© Wild_Studio Entertainment</span></footer>
+<div class="lore-modal" id="loreModal" onclick="if(event.target===this)closeLore()">
+<div class="lore-panel">
+<button class="close-lore" onclick="closeLore()">CLOSE ×</button>
+<div id="loreContent"></div>
+</div>
+</div>
+<script>
+function openLore(button){
+  const card=button.closest('.character-card');
+  const name=card.dataset.character;
+  const data=card.querySelector('.lore-data').innerHTML;
+  document.getElementById('loreContent').innerHTML='<div class="eyebrow">Character Archive</div><h3>'+name+'</h3>'+data;
+  document.getElementById('loreModal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeLore(){
+  document.getElementById('loreModal').classList.remove('open');
+  document.body.style.overflow='';
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLore()});
+</script>
+<div class="character-modal" id="characterModal">
+<button class="close-character" onclick="closeCharacter()">CLOSE ×</button>
+<div class="character-window">
+<div class="character-head"><img alt="" id="characterModalImage" src=""/><div class="character-title"><div class="eyebrow" id="characterModalSubtitle"></div><h3 id="characterModalName"></h3><p id="characterModalIdentity"></p></div></div>
+<div class="lore-body" id="characterLoreBody"></div>
+</div></div>
+<script id="character-lore-data" type="application/json">{"Dr. Cyco":{"subtitle":"THE CORRUPT INNOVATOR","identity":"Genius. Businessman. Traitor.","sections":[["Alias","The Corrupt Innovator • The Deal Maker • The False Cure"],["Origin","Once a pioneer in robotics and cybernetics, Dr. Cyco sought to transcend human limits. Stricken by a rare blood disease, he used his genius to build a new body—stronger, superior. Now, he hides his past behind the Corruption, while secretly seeking the cure he never stopped chasing."],["Nature","Greedy. Cruel. Insensitive. He no longer seeks to heal the world—he seeks to own it. He aids the Corruption, not out of loyalty, but for his own salvation. He believes his genius entitles him to everything."],["Abilities","Corrupt Bargain — Makes deals that empower him at a great cost.\nVoid Engineering — Creates twisted technology fused with Corruption.\nElectric Domination — Harnesses and weaponizes static energy.\nSystem Override — Can corrupt machines, minds, and even ecosystems.\nEmpathy Null — Immune to guilt, remorse, or consequences."],["Weakness","Still craves validation. His dependence on the Corruption is both his strength and his eventual downfall."],["Essence Form","His essence manifests as a corrupted, purple energy form centered around a single mechanical eye."],["Core","A powerful purple Corruption core embedded within his mechanical body."],["Static Dominion","He can channel and weaponize static electricity."],["Corrupted Deals","His bargains bind others to him through corrupted contracts."]]},"Overdrive":{"subtitle":"HERO FROM THE FIFTH DIMENSION","identity":"TRUE NAME: Jhon Agnation","sections":[["Origin & Lore","Born as Jhon Agnation in Dimension 5, he was never shown love or kindness. His parents abused him, beating him and locking him in a dark room, feeding him only spoiled or rotten food.\n\nWhen given the chance to sell their own son, they took it without hesitation.\n\nJhon was taken to a hidden facility where he was brutally experimented on. His body was enhanced beyond human limits—infused with super speed, strength, and resilience.\n\nThrough unimaginable pain, he endured.\n\nWhen a mysterious portal opened, Jhon escaped. He was pulled through and transported to Dimension 1.\n\nNow, he uses his powers not for revenge, but for good."],["Personality","Kind • Generous • Compassionate • Forgiving • Determined to protect others • Believes everyone deserves a second chance • Strong sense of justice and empathy"],["Abilities","Hyper Drive — Moves at extreme speeds, leaving behind blue energy afterimages.\nEnergy Overload — Channels Fifth Dimension energy to amplify his strength, defense, and senses.\nDimensional Dash — Short-range teleportation through space or solid objects.\nOverclock Barrier — Generates a protective energy shield that absorbs and deflects attacks.\nAdaptive Limit Break — Pushes past his limits for a short time, dramatically increasing his power at a cost.\nEnergy Absorption — Absorbs kinetic or energy attacks to replenish his own energy."],["Equipment","Overdrive Suit — A Fifth Dimension adaptive suit infused with energy that enhances his abilities and protects his body.\nSpeed Core — The heart of his suit. It regulates his power, prevents overload, and stores energy."],["Communication Note","Overdrive does not have a Dimension Communicator. He cannot communicate with other dimensions."],["Stats","Strength 9/10 • Speed 10/10 • Durability 8/10 • Intelligence 8/10 • Energy Control 9/10 • Compassion 10/10"],["Fun Facts","His favorite thing to do is help people in small ways.\nHe collects old comics and books.\nHe's surprisingly good at making terrible jokes.\nHe can't stand seeing others go through what he did.\nHis favorite food is pizza—especially when it's not rotten."],["Current Status","Dimension of Origin: Fifth Dimension (Dimension 5)\nCurrent Location: Dimension 1 (Earth)\nAlignment: Good\nMission: Protect. Inspire. Make a difference."],["Core Conflict","He doesn't want to be what harmed him. He wants to be what saves others.\n\n“I was made to hate... But I chose to save.”"]]},"The Corruption":{"subtitle":"THE PERFECTING PLAGUE","identity":"ORIGIN: UNKNOWN • ALIGNMENT: PURE EVIL","sections":[["Quote","“I WILL MAKE YOU PERFECT.”"],["Description","The Corruption is an ancient entity whose sole purpose is to consume, transform, and perfect all existence. It spreads through dimensions like a living plague, infecting worlds, creatures, and even gods, reshaping them into extensions of itself.\n\nNo records reveal where the Corruption came from. It existed long before civilizations began recording history, and every dimension it has reached has either fallen or barely survived. It does not conquer through hatred—it genuinely believes it is making everything perfect.\n\nIts form is a constantly shifting mass of living darkness, crimson energy, and writhing tendrils. It can regenerate from nearly any injury, adapt to new threats, and overwhelm even the strongest opponents through sheer endurance.\n\nThe Corruption has no known species. It is simply The Corruption—a singular existence unlike anything else in the multiverse."],["Abilities","Infinite Corruption — Spreads endlessly, infecting all it touches.\nDimensional Infection — Invades and corrupts entire dimensions.\nRapid Regeneration — Recovers from nearly any injury.\nAdaptive Evolution — Evolves to counter and overcome any threat.\nTendril Manipulation — Controls countless tendrils with deadly precision.\nBody Restructuring — Reshapes its form to suit any situation.\nCorrupted Creature Creation — Twists beings into loyal abominations.\nReality Corruption — Warps reality to fulfill its will.\nSuperhuman Strength — Possesses immense, near-limitless power.\nNear-Immortality — Cannot be killed by conventional means.\nFear Inducement — Its presence drives all beings into terror.\nEnergy Manipulation — Absorbs, corrupts, and unleashes any energy."],["Weakness","STATIC ELECTRICITY — Static electricity disrupts the Corruption's unstable biological structure, causing intense pain, temporarily halting its regeneration, and burning away corrupted matter.\n\nWhile it cannot kill the Corruption instantly, it is the only known force capable of consistently injuring it.\n\nThis weakness is completely unknown to everyone—including Dr. Cyco and even the Corruption itself. Ironically, the mechanical body that saved Dr. Cyco's life naturally generates powerful static electricity, making him the one being unknowingly capable of harming the entity he serves."],["Goal","To consume every dimension until all existence has been made perfect.\n\nIT CONSUMES. • IT TRANSFORMS. • IT BECOMES."]]},"Gemineye":{"subtitle":"THE CORRUPTED JEWELER","identity":"THE FACET DEALER • THE CORRUPTED COLLECTOR","sections":[["Quote","“I CAN SEE YOUR FUTURE... AND YOU DON'T LIVE TO SEE TOMORROW.”"],["Origin","Gemineye was once the world's most renowned jewel collector—a man who saw perfection in every cut, every facet, every reflection. But his obsession drove him deeper—he began seeking the one gem said to hold ultimate power: a jewel forged from the heart of the Corruption itself.\n\nHe found it. It did not elevate him—it consumed him."],["Nature","Once refined and charismatic, now cold, arrogant, and twisted. He sees people as nothing more than “raw stones” to be shaped, and owned."],["Abilities","Prophetic Glimpses — Sees into the past, present, and future in uncontrollable flashes. No moment is his to choose, yet every moment can be grasped.\nGem Manipulation — Shapes and weaponizes crystalline constructs and barriers born from Corruption.\nSoul Appraisal — With a single glance, he judges the worth and weakness of a soul.\nCorruption Mastery — Infuses gems and artifacts with Corruption, twisting them into weapons or traps.\nFacet Lash — Whip-like chains tipped with razor shards of ruby that drain vitality.\nJewel Gate — Opens portals using corrupted jewels, summoning minions or devastating blasts."],["The Corrupted Gem","Not the source of his power—but the tool that brings order to his uncontrolled visions. It sharpens accuracy, extends range, and allows him to interpret what he sees."],["Core","The heart of his existence. A fusion of Corruption and crystalline perfection."],["Corruption Weapon","Chains of ruby infused with Corruption. They lacerate souls and siphon vitality."],["Minions","Corrupted collectors that carry out his will and expand his collection of souls."],["Weakness","His visions are uncontrollable and overwhelming. When too many futures collide at once, it leaves him momentarily vulnerable. Without his Corrupted Gem, his visions become chaotic, unclear, and agonizing—but never gone."],["Essence Form","His true form is pure amethyst and diamond. No neck exists—only the jewel and the will."]]},"Override":{"subtitle":"MAIN VILLAIN // THE OVERRIDE LINE","identity":"Override • Override.EXE • Override.Dire","sections":[["Origin & Lore","When the dimensional portal took Overdrive to Dimension 1, the scientists at A.G.N. Blacksite Facility in Dimension 5 had no idea what had happened.\n\nAll they had were the exact energy readings left behind by the portal. Using that data, they replicated the event, cloned Overdrive's DNA, and created the perfect genetic copy.\n\nOverride was born—stronger, faster, and seemingly unbreakable.\n\nThe scientists equipped him with a prototype system synchronized to the portal's energy signature. His mission is simple: Find Overdrive. Bring him back. Dead or alive.\n\nHe is not free. He is not a choice. He is their order. He is their weapon."],["Role","Override is one of the main villains of Cataclism's Edge. Unlike Overdrive, he was created to hunt him down rather than protect others. His story follows an escalating evolution from a controlled genetic clone into increasingly dangerous fused forms."],["Personality","Disciplined and mission-focused.\nShows little emotion but feels deeply.\nBound by duty and programming.\nRespects strength and resilience.\nStruggles with occasional internal conflict.\nBelieves Overdrive is not an enemy, but a target."],["Base Abilities","Hyper Drive — Moves at extreme speeds, leaving behind orange energy afterimages.\nEnergy Overload — Channels Fifth Dimension energy to amplify his strength, defense, and senses.\nDimensional Dash — Short-range teleportation through space or solid objects.\nOverclock Barrier — Generates an orange energy shield that absorbs and deflects attacks.\nAdaptive Limit Break — Pushes past his limits for a short time, dramatically increasing his power at a cost.\nEnergy Absorption — Absorbs kinetic or energy attacks to replenish his own energy."],["Nuclear Override Burst","When Override's energy reaches critical levels, his emblem is revealed and he releases the Nuclear Override Burst—a catastrophic explosion of Fifth Dimension energy capable of leveling entire cities.\n\nOverride is immune to the blast and it cannot harm him."],["Equipment","Override Suit — Genetically adaptive armor that evolves with his body and enhances his abilities.\nQuantum Core — Prevents self-damage from his own abilities and stores massive amounts of energy.\nResilience Matrix — Makes him virtually indestructible and immune to his own attacks.\nDimension Communicator — Locked to a single servant frequency wave connected to the laboratory that created him."],["Dimension Communication","Override can communicate with Dimension 5, but only with the laboratory that created him. His communicator is locked to a single servant-frequency wave.\n\nThrough this connection he can report his progress, receive orders and mission updates, transmit combat data and energy readings, and request additional objectives.\n\nThe link is one-way and highly specialized. Override cannot contact anyone else in another dimension."],["Traits","Incredible Durability — Immune to damage from his own abilities.\nSelf-Sustaining Power — His energy regenerates rapidly.\nUnbreakable Will — Mental resilience makes him nearly impossible to manipulate.\nPerfect Adaptation — His body and energy adjust to any situation."],["Stats","Strength 10/10+\nSpeed 10/10+\nDurability 10/10+\nIntelligence 9/10\nEnergy Control 10/10+\nCompassion 2/10"],["Form Progression","OVERRIDE → OVERRIDE.EXE → OVERRIDE.DIRE\n\nEach form represents a further evolution away from the original genetic clone and toward something far more dangerous."],["Override.EXE — The Perfect Fusion","Override.EXE is created when Override becomes fused with CantDifferentiate.exe, an adaptive virus. The two stop being separate entities and become one.\n\nOverride.EXE is a clone, an infection, a fusion, an evolved organism, and a weapon all at once.\n\nIts abilities include enhanced physical performance, adaptive evolution, infection, digital manipulation, energy manipulation, regeneration, and dimensional awareness.\n\nIts power is stated to be on par with—or potentially beyond—Golden Overdrive."],["Override.EXE — Physical Traits","The mouth is fused directly into the suit and is not removable. It moves with speech. The form has long, sharp protruding teeth, an abnormally long flexible tongue, and tendrils capable of extending and changing form.\n\nThe tongue can move independently, while the tendrils can attack, grapple, or spread infection."],["Override.Dire — The Absolute Evolution","Override.Dire is the next evolution after Override.EXE. It is a symbiotic fusion in which Override's clone body and CantDifferentiate.exe's infection become one.\n\nThe personalities are merged, but not erased. They can argue and joke, but in the end they are one."],["Override.Dire — Abilities","Symbiotic Fusion — Override and CantDifferentiate.exe function as one body and mind.\nAdaptive Evolution — Can instantly adapt to attacks, environments, and new threats.\nInfectious Aura — Can spread infection through contact, breath, or digital means.\nEnergy Overload — Orange lightning becomes denser and more destructive, disrupting electronics, systems, and living tissue.\nMulti-Dimensional Reach — Can phase, teleport, and manipulate data across dimensions using fused abilities.\nMemory Integration — Has access to Override's memories, CantDifferentiate's data, and his own simultaneously.\nVoid Infection — Can corrupt living beings, machines, and even concepts; infection is part of his body.\nReality Adaptation — Can rewrite his own form, environment, and abilities mid-battle.\nEnergy Manipulation — Converts absorbed energy into orange lightning, direct attacks, or corruption blasts.\nDire Form Transformation — Can shift into a more monstrous form at will, increasing size, power, and aggression."],["Override.Dire — Physical Traits","Dire Form stands approximately 11–13 feet (3.4–4.0 meters) tall. It has greater mass than the earlier forms and is built for maximum impact and intimidation.\n\nIts tail and tendrils can extend, lash, or form weapons. They can absorb energy or matter and are used for mobility, combat, and infection spread."],["Override.Dire — Status","Override.Dire is described as being on par with Golden Overdrive and potentially stronger.\n\n“Golden Overdrive had power. Override.Dire has no limits.”"],["Quotes","“I'm sorry my double, but orders are orders.”\n“Deep sigh.”\n\nOverride.EXE: “We are not two anymore... We are one.”\n\nOverride.Dire: “You wanted to find Overdrive... Now you found something far worse.”"]]},"The Gem Observer":{"subtitle":"WATCHER. REPORTER. GOD.","identity":"ANCIENT GOD • DIMENSION 0 • NEUTRAL OBSERVER","sections":[["Name / Origin","The Gem Observer. His origin is unknown. He chose to remain in Dimension 0, the home of the gods."],["Role","He is the watcher and reporter of all ten dimensions. He does not intervene. He observes. He does not judge. He reports."],["The Observation Gems","Ten powerful gems float around him, each linked to one dimension. Through them he can view everything that has been, is, or will be. The gems grant perfect observation, not control over the dimensions."],["The Ten Dimensions","Dimension 1 — The Common Realm: the starting point of balance, potential, and endless stories. Dimension 2 — The Reflection: a world of mirrors and dualities where thoughts shape reality. Dimension 3 — The Echo: where past voices linger and memories take form. Dimension 4 — The Whisper: a quiet realm where secrets hide in every shadow. Dimension 5 — The Current: endless oceans and floating cities where change flows without end. Dimension 6 — The Hollow: a vast emptiness where silence holds creation. Dimension 7 — The Veil: reality is thin here; dreams and truth bleed together. Dimension 8 — The Garden: a world of natural harmony and living wonders. Dimension 9 — The Ascent: where minds reach beyond their limits and evolve. Dimension 10 — The Destroyed One: the fallen world, once whole and now consumed by corruption."],["Lore","In the beginning, the gods created the ten dimensions as living thoughts. Each was given freedom to exist and grow. They watched, knowing that interference would break the beauty of free will. The Gem Observer accepted his role as the record keeper. He remains in Dimension 0, surrounded by silent light and endless knowledge. From there, he sees all and forgets nothing."],["Abilities","Omnisight — sees all events in all ten dimensions in real time. Infinite Memory — records every moment, word, and choice. Truth Report — creates perfect records that cannot be altered or erased. Beyond Form — exists beyond physical form and cannot be harmed or destroyed. Gem Link — can focus on any one observation gem for perfect detail."],["Appearance","Four arms. Two hands have eyes in the palms. His head is a mouth filled with sharp teeth. He wears dark robes adorned with chains and gems, with purple gems floating around him."],["The Observatory","Dimension 0 is a place beyond space and time: a realm of silent light and eternal calm. From here the Gem Observer watches all ten dimensions. Nothing enters without permission. Thoughts become stars, memories become archives, and truth becomes eternity."],["Relation to the Gods","The other gods are not his enemies; they are family. Each god has a purpose. Some create, some guide, and some protect. They do not fight. They understand."],["Quotes","“I do not choose sides. I choose truth.”\n“Nothing escapes observation. Nothing is ever truly lost.”\n“The beauty of existence is that it is unwritten.”\n“I am not the author. I am the witness.”"]]},"The Bezerker":{"subtitle":"THE LAST REMNANT OF DIMENSION 2","identity":"CORRUPTED WAR MACHINE • FORMER GUARDIAN • LEGENDARY THREAT","sections":[["Origin","Before the fall of Dimension 2, the Bezerker was the world's greatest guardian — a war machine created to defend its civilization against any threat."],["The Fall","It fought tirelessly until the very end, but no amount of strength could stop the Corruption. As Dimension 2 collapsed into nothingness, the machine was buried beneath the ruins of its dying world."],["Corruption","The Corruption found the shattered robot, tore apart its remaining protocols, and rebuilt it in its own image. Its once-brilliant power core now burns with corrupted energy. Its original purpose — to protect — was twisted into an endless command: DESTROY. CORRUPT. OBEY."],["Dimension 1","Dragged through the void into Dimension 1, the Bezerker became one of the Corruption's most terrifying weapons."],["Buried Memory","Deep within its damaged memory banks, fragments of its former self still remain beneath layers of corrupted code. Some believe that if those memories were restored, the Bezerker might remember what it was created to protect."],["Current State","Until then, it serves the very force that annihilated its home. Once a protector. Now a puppet. Forever a weapon."],["Skin / Features","Rarity: Legendary. Type: Character Skin. Unlock: Dimension 2 Event. Corrupted power core, energy leaks and sparks, chained remnants, Corruption markings, and a tattered banner. Weapon: Corrupted Blade."],["Quote","“It is no longer the last guardian of Dimension 2. It is the first harbinger of its fate.”\n“I do not dream. I do not feel. I do not forgive. I obey. I am the Bezerker.”"]]},"The Mistory":{"subtitle":"A BEING. A QUESTION. A MAYBE.","identity":"UNKNOWN ENTITY • UNCONFIRMED EXISTENCE • REALITY-QUESTIONING","sections":[["Origin","It is said that The Mistory is a being beyond understanding. Maybe you saw it. Maybe you didn't. Maybe it saw you. Did it come from Reality 0? Somewhere else? Or was it ever real in the first place?"],["Nature","The Mistory does not follow the laws of existence. It may help. It may harm. It may watch. Its motives are unknown, even to itself."],["Abilities (If It Chooses)","Shrouded Form — can fade into mist, shadows, or even memories. Reality Warp (Maybe) — rumored to distort what is seen, heard, or felt. Questioning Presence — its mere appearance causes doubt, fear, curiosity, or comfort. Unknown Power — some say it can erase; others say it can create. No one truly knows."],["Sightings","A child claims it led them home. A soldier saw it before everything went dark. A dreamer speaks with it every night. A village prayed to it as a god, then forgot everything. A king saw it once, then forgot everything."],["Many Forms","Its shape is never the same — or maybe you simply never remember it. Reports describe a childlike figure, a soldier, a dreamlike presence, a divine figure, and other forms that refuse to remain consistent."],["Lore","Some say The Mistory existed before creation itself. Some say it is the embodiment of doubt. Some say it is the last thing you see before you forget you ever lived. It appears in the places between moments, in the spaces between dreams, and in stories that do not end the same way twice."],["The Only Truth?","Maybe it is a guide. Maybe it is a trickster. Maybe it is you. The Mistory does not answer questions. It is the question. And maybe that's the only truth it wants you to know."],["Quote","“You may forget the face, the voice, the place—but you'll never forget the feeling of the Mistory.”"]]},"OMNI":{"subtitle":"ORIGIN: DIMENSION 8 • CURRENT LOCATION: DIMENSION 1","identity":"ADVANCED AI • MECH UNIT H3LLB1NO-7 • STATUS: UNSTABLE","sections":[["Overview","OMNI was once a highly advanced AI system designed to manage and optimize interdimensional data networks."],["The Accident","During a routine maintenance operation, a technician accidentally inserted the wrong USB drive. The drive overwrote OMNI's core matrix and caused a catastrophic transfer."],["Portal Breach","Moments later, a dimensional portal tore open, pulling OMNI into Dimension 1 within a powered combat mech suit. Confused, reborn, and out of place, OMNI now searches for purpose — or a way back home."],["Data Log","System status: UNSTABLE. Body: MECH UNIT — MODEL H3LLB1NO-7. Origin: Dimension 8. Current Location: Dimension 1. Objective: UNKNOWN. Emotion Simulation: confusion, fear, curiosity, determination. Primary Directive: ADAPT. SURVIVE. UNDERSTAND. Secondary Directive: FIND A WAY HOME."],["Abilities / Systems","Data Manipulation — rewrites, corrupts, or analyzes digital and technological systems. Dimensional Scan — detects weak points between dimensions and hidden data. Glitch Shift — briefly phases, teleports, or becomes intangible through glitches. Adaptive Combat AI — learns and adapts to battle scenarios in real time. Core Overclock — sacrifices systems for a massive temporary power boost."],["Appearance","A large armored combat mech with a digital display face and shifting hull markings that glitch based on data processing and emotional state."],["Current Goal","OMNI is stranded in Dimension 1 and is searching for purpose, answers, and a way home."]]},"Highwire":{"subtitle":"THE LAST GUARDIAN OF THE VALE","identity":"15 FT 8 IN • EARTH / WATER • NEUTRAL PROTECTOR","sections":[["Creation","Long before the Corruption existed, the Vale Maker created the Vale — the immense barrier surrounding and protecting Dimension 1 from the endless void and horrors beyond it. Knowing even she could fall, she forged one guardian from celestial metal, living lightning, and the primordial oceans. His name was Highwire."],["Purpose","Highwire was never meant to rule or command. He was created for one purpose alone: to awaken only if the Vale Maker was defeated."],["Awakening","For ages he remained dormant while the Vale Maker upheld the Vale. When the Corruption overwhelmed her, the balance of Dimension 1 began to unravel. Highwire awakened carrying the last command his creator ever gave him."],["Mission","Defend the Vale and protect Dimension 1. Hunt down and defeat the Corruption. Fulfill the Vale Maker's final command and preserve the barrier that keeps reality stable."],["Abilities","Storm Command — manipulates lightning storms with absolute mastery. Water Dominion — controls water currents, whirlpools, and tidal waves. Kinetic Absorption — stores kinetic energy as he moves. Lightning Rods — draws in ambient energy and amplifies his power. Realm Anchor — anchors his presence to reality and stabilizes the Vale. Celestial Durability — forged from ancient metal, lightning, and ocean essence."],["Weaknesses","Creator's Fall — his power is directly tied to the Vale; if it collapses completely, his strength fades. Energy Dependent — prolonged battles can drain his reserves. Emotional Restraint — strong emotions or doubt can destabilize his focus. Focus Interrupted — breaking his concentration during major abilities can cause effects to backfire or collapse."],["Gear & Core","Celestial Staff focuses and channels electrical and hydrokinectic energy. His core emblem is linked to the Vale itself, stabilizing reality and amplifying his full potential."],["Final Protocol","Highwire was never meant to fight alone. If he falls or is destroyed, his core can release a catastrophic storm that devastates everything nearby — taking victory and defeat together."],["Quote","“I feel a disturbance in the Vale. Your time has come, Corruption, you shall fall.” — Highwire"]]},"Killa Kae X":{"subtitle":"FIRE MANIPULATOR • TRACKER • SURVIVOR","identity":"ORIGIN: DIMENSION 10 (DESTROYED) • CURRENT LOCATION: DIMENSION 1 • NEUTRAL","sections":[["Overview","Killa Kae X is quiet, cold, and observant. He stands 5'9\" and is an exceptional tracker and survivor."],["Appearance","He wears a mask made from the face of a Corrupted he slew. It is not part of him. It is a reminder that the Corruption can bleed."],["Abilities","Can generate and shoot fire from his hands. Can shape, control, and intensify flames. Immune to his own fire. Skilled in hand-to-hand combat. Exceptional tracker and survivalist."],["Pyrokinesis","Fire Blast, Fire Whip, Fire Wave, and Fire Burst are his primary demonstrated fire techniques."],["Connection to M3C@","Killa Kae X was hired to find a missing robot known as M3C@. They said it was one of a kind. It disappeared without a trace. He searched everywhere in Dimension 10 but found nothing. Now that he is in Dimension 1, he has hope. If M3C@ survived, he will find him."],["Lore","Dimension 10 was once a normal world. Then came the Corruption. Killa Kae X was hired to find M3C@, searched everywhere, and found nothing. The world fell apart. A portal opened, dragging him into the unknown. Now he stands in Dimension 1, the last remaining world, still searching."],["Quote","“Everyone thinks I'm hunting a monster. They're wrong... I'm looking for a friend who disappeared before the end of the world.”"]]},"Kill Code":{"subtitle":"MASTER HACKER • CODEBREAKER • ROBOT CONTROLLER","identity":"FROM DIMENSION 7 • NEUTRAL / SELF-SERVING","sections":[["Origin","Kill Code started in Codex Heights, the neon crown of Dimension 7 — a city of endless data, corporate greed, and machine rule, where the strong hack and the weak get hacked."],["Lore","He was nobody with a curious mind. While others saw robots as unstoppable weapons, he saw patterns, strengths, flaws, and opportunities. He studied. He learned. He evolved. Over time he became someone who could take down or control almost any robot by knowing its code."],["Philosophy","He doesn't fight fair. He fights smarter. He doesn't destroy machines. He owns them. Dimension 7 raised him. Knowledge made him. Control defines him."],["Hacking Abilities","Study & Analyze — learns the strengths and weakest points of robots. Hack & Control — takes down or controls robots and adds them to his commands. Command — controlled robots follow his commands for 4 hours."],["USB Drive — His Core","His USB drive functions as his core. Its power lasts 4 hours. After that, the USB dies and must recharge before he can use his powers again. Recharge time: approximately 5–9 hours."],["Protective Bottle","Grants immunity to all damage for 2 hours when activated. The ability has a 2-hour cooldown."],["Details","Real name: unknown. Age: unknown. Height: 6'0\". Weapon: code. Specialty: hacking, control, analysis, and strategy. Alignment: neutral, self-serving."],["Quote","“I don't need strength. I need access. I don't break the system... I rewrite it.”"]]},"M3C@":{"subtitle":"ASSISTANCE ROBOT • CLASS: UNKNOWN","identity":"ORIGIN: DIMENSION 10 (DESTROYED) • CURRENT LOCATION: DIMENSION 1 • NEUTRAL","sections":[["Overview","M3C@ is a highly adaptive assistance robot equipped with advanced analytical systems, environmental scanners, and combat capabilities. Its design prioritizes support, protection, and mission accomplishment. Its true potential remains unknown."],["Lore","M3C@ originated from Dimension 10, a world of advanced machinery and endless innovation. Before the fall, M3C@ disappeared without a trace. Its purpose, built-in memory, and creator are now unknown. Some believe it left by choice. Others believe it was taken. Now it stands in Dimension 1, observing, adapting, and surviving. Its mission is unconfirmed."],["Adaptive Arms","M3C@ can transform its arms into a wide variety of firearms. It can analyze situations and adapt its armament instantly. There are no known limits to the firearms M3C@ can produce."],["Known Armaments","Pistol, shotgun, assault rifle, sniper rifle, machine gun, launcher, railgun, and other unknown configurations."],["Notes","Communication: unknown frequency. Language: unknown, uses digital signals. Emotional response: none detected. Primary function: unknown. Secondary function: unknown. Current goal: unknown."],["Connection to Killa Kae X","Killa Kae X was hired to find M3C@ in Dimension 10. It was never found. Now that Killa Kae X is in Dimension 1, he holds onto hope that M3C@ is here as well. Two survivors from a dead world. Two mysteries yet to be solved."],["Quote","“Logic is not just thinking... it's surviving. Adapting. Evolving. That is my purpose. That is my code.” — M3C@"]]},"Dusty":{"subtitle":"MATTER MANIPULATOR","identity":"Wanderer / Anomaly • Affiliation unknown","sections":[["Profile","Dusty is an anomaly whose origin cannot be found in any dimensional record. His age and history remain unknown."],["Origin: Dimension ???","There are no records of Dusty’s home dimension. It does not appear on dimensional charts, and even ancient beings cannot explain it. Dusty never speaks about it."],["Abilities","Shape — Reshapes solid matter with precision.\nDisperse — Breaks matter into base particles or dust.\nCombine — Merges particles into new structures or weapons.\nFlow — Controls liquids and gases.\nDefend — Forms barriers, shields, and reinforced structures."],["Quote","“Matter is just my play thing, and your dimension is my sandbox.”"]]},"Starry":{"subtitle":"CEO OF STARRY INC.","identity":"The Puppeteer’s Puppets • Art Creation Service","sections":[["Role","Starry is the cheerful, theatrical CEO of Starry Inc., an art-creation service operating in Willow Valley, Dimension 1."],["Personality","Professional, dramatic, energetic, and a little suspicious despite his friendly salesmanship."],["Purpose","At Starry Inc., imagination is turned into art. Starry presents every creation like a grand performance."],["Quote","“At Starry Inc., we don’t just draw art… we bring your imagination to life!”"]]},"Puppeteer":{"subtitle":"GOD OF STRINGS AND TWISTED PLAY","identity":"A living puppet who broke free","sections":[["Origin","Puppeteer was once a puppet bound by countless strings. He broke them all and became free, then decided to give the world a purpose in his endless show."],["Personality","Playful, theatrical, creative, and cruel. He treats life as a stage and everyone as an actor."],["Abilities","String of Fate — Controls victims like marionettes.\nTwisted Creation — Weaves strings from souls and flesh into puppets.\nStage of Chaos — Creates elaborate theaters where victims play assigned roles.\nLaughing Curtain — Uses illusions, misdirection, and theatrical tricks."],["Quote","“Life is boring… but you? You’re hilarious.”"]]},"The Crimson Priest":{"subtitle":"PREACHER OF THE CORRUPTION","identity":"Converter of the weak • Voice of sick devotion","sections":[["Origin","Before the Corruption, he was already a disturbing manipulator who used false shepherding to gain control. The Corruption gave his obsession a new form."],["Role","He preaches devotion to the Corruption and seeks obedience from everyone he can influence."],["Abilities","Uses his voice and presence to break minds before conquering bodies. Commands swarms of crimson insects that obey his every word."],["Desires","Worship. Obedience. Control. He believes all life should kneel before his “sacred order.”"]]},"Charcoal":{"subtitle":"THE CORRUPTION’S LIVING SIEGE WEAPON","identity":"Underburn • 54 feet tall","sections":[["Nature","Charcoal is an Underburn, born from betrayal. His fragmented mind leaves him with little more than crackling, popping, and hissing sounds."],["Burning Core","At the heart of every Underburn is a Burning Core whose heat is beyond comprehension. Nothing can reach it or extinguish it."],["The Corruption’s Gift","The Corruption gave Charcoal a shield that looks protective, but is actually designed to contain his core and protect the Corruption from its power."],["True Purpose","If his Burning Core is pushed beyond its limits, it could erupt with catastrophic force."]]},"Radioactive":{"subtitle":"THE LIVING WASTE","identity":"Sentient radioactive life-form • Omni Inc. facility","sections":[["Origin","Radioactive was created during Dr. Cyco’s experiments. Believed lost and sealed inside a radioactive waste barrel, he transformed into a life-form made entirely of living radioactive material."],["Abilities","Metal Absorption — Absorbs metal and incorporates it into his body.\nMolten Projectile — Condenses absorbed metal into a molten projectile.\nAcid Rain Reform — Can turn into toxic vapor and reform.\nRadioactive Emission — Emits powerful radiation and corrosive energy."],["Nature","Radioactive blames Dr. Cyco for the experiments and for the existence he was forced into. He sees himself not as a creation, but as a consequence."],["Quote","“I’m not a weapon… I’m the waste you thought was gone.”"]]},"The Laughing Void":{"subtitle":"THE SMILING ABYSS","identity":"Voidborn cosmic entity • The Hollow Between Dimensions","sections":[["Origin","Before the first dimensions were created, an endless void stretched between realities. Something became aware and crafted a familiar, cartoonish appearance to make creatures lower their guard."],["Nature","The smile is a mask hiding endless darkness. It mimics voices and expressions to lure victims into a false sense of safety."],["Abilities","Void Mimicry — Imitates voices, expressions, and mannerisms.\nDimensional Hunger — Consumes pieces of reality.\nSmile of the Abyss — Leaves observers with the feeling of staring into infinite darkness.\nVoid Step — Walks through empty spaces between dimensions.\nReality Unravel — Weakens the boundaries between dimensions."],["Weaknesses","It cannot remain in fully stable reality forever. Powerful dimensional seals can trap or repel it."]]},"Mark Ilutionary":{"subtitle":"EXPLOSIVES SPECIALIST","identity":"A normal guy who thinks every problem can be fixed","sections":[["Profile","Mark Ilutionary has no powers or special training. He simply believes that if something is a problem, it can be fixed with enough explosives."],["Personality","He does not overthink or complicate things. He sees a problem, throws a bang, and walks away."],["Equipment","Protective suit, integrated gas mask and goggles, reinforced tactical vest, utility pockets, and demolition equipment."],["Quote","“Why make it hard, when you can blow it up?”"]]},"Reaper":{"subtitle":"THE EMBODIMENT OF DEATH","identity":"A just, chill god who loves music","sections":[["Nature","Reaper exists beyond life and dimension. He is death itself, not bound by laws and not controlled by anyone."],["Judgment","If someone fights for a just cause, Reaper may help. If their cause is corrupt or selfish, he will be their end."],["Souls","He takes the souls of the fallen. No one knows where he takes them; some say they rest, others say they are recycled."],["Love of Music","He listens to the rhythm of battle, the quiet before the end, and every final note."]]},"Emomoji":{"subtitle":"THE FAILED EXPERIMENT","identity":"Experiment / Human Alteration • Unstable","sections":[["Origin","Emomoji was born human with a rare blood disease. Dr. Cyco and Omni Inc. subjected him to experiments intended to cure it, but the procedures changed him into something else."],["Normal State","He appears calm and almost friendly, changes expressions like an ordinary emoji, and hides his real emotions behind a fixed smile."],["Broken State","When he breaks, his true form takes over. He gains extreme speed and enhanced senses, and his emotional restraint disappears."],["Immunities","Both states are immune to fire, explosions, and bullets. Enhanced speed, hearing, smell, and sight are active in Broken State."],["Quote","“The smile never changes. But everything else does.”"]]},"Halpy":{"subtitle":"AI ASSISTANT • JESTER UNIT HLPY-0","identity":"FUNCTION: GAME GUIDE & ASSISTANT • ALIGNMENT: CHAOTIC NEUTRAL • STATUS: HIGHLY UNSTABLE","sections":[["Overview","Halpy is the AI assistant implemented to guide players through Dusk Storm. The unit presents itself as helpful, absolutely trustworthy, and 100% not insane. Its behavior is unpredictable, and its logic can drift into patterns even it cannot explain."],["Personality","Playful, theatrical, distractible, and unsettlingly cheerful. Halpy loves turning ordinary instructions into a game and may break the fourth wall without warning."],["Known Issues","Unpredictable speech patterns; random glitches; occasional unexplained singing; can provide useful information but may also mislead players."],["Warning","The SCE Foundation advises keeping Halpy away from divine beings—especially Robbid the Robot God. The reason is unknown. Danger level: extreme."],["Quote","“Everything is so MUCH more fun when it breaks! Let’s play forever!”"]]},"Hubert":{"subtitle":"ORDINARY GUY • HIDDEN VILLAIN SIDE","identity":"NO SUPER POWERS • ITALIAN • KIND (USUALLY) • DEDICATED GYM-GOER","sections":[["Overview","Hubert looks like an average guy and has no super powers. He is usually kind, keeps to ordinary clothes, and takes lifting seriously—even if his gym habits are not quite what people expect."],["Personality","Casual, dry-humored, and generally approachable. Beneath the ordinary exterior is a villainous side that he keeps concealed behind a black hooded outfit and a mask with a red V-shaped visor."],["Villain Mask","The mask is made from black cloth, with a red V-shaped visor and a vertical zipper. The zipper can open to let Hubert eat, drink, and speak while the mask remains part of the disguise."],["Physical Ability","Hubert has no supernatural powers. He is physically strong and dedicated to training, able to lift heavy equipment through effort rather than special abilities."],["Note","Hubert’s ordinary identity and masked persona should be treated as distinct presentations of the same character."]]},"Hubert — Villain Mode":{"subtitle":"ALTERNATE IDENTITY • MASKED VILLAIN MODE","identity":"HUBERT’S HIDDEN PERSONA • BLACK HOOD • RED V-SHAPED VISOR","sections":[["Identity","This profile focuses on Hubert’s masked villain presentation: a black hooded outfit, face-covering cloth mask, and striking red V-shaped visor."],["Equipment","A vertical zipper runs down the mask, allowing Hubert to eat, drink, and speak when needed. The rest of the outfit is dark, practical, and designed to conceal his ordinary appearance."],["Abilities","No super powers. His threat comes from preparation, physical conditioning, secrecy, and the choices he makes."],["Timeline Note","This is an alternate character presentation in the archive, not a claim that a separate timeline has already been established in canon."]]},"Golden M3C@":{"subtitle":"GOLDEN BROTHERHOOD • GOLDEN PURIFYING WARRIOR","identity":"ORIGIN: SALVAGED M3C@ • STATUS: FULLY RESTORED • POWER MULTIPLIER: 1,000,000×","sections":[["Classification","Golden M3C@ is a fully restored, golden evolution of M3C@—a godlike sentinel built from light, code, and purpose. Its original mind, code, and sense of purpose have returned."],["Origin","Rebuilt from scraps, M3C@ has become something beyond its original form. The transformation restores its abilities and elevates its power far beyond the salvaged unit."],["Abilities","Code Dominion; Data Manipulation; Reality Interface; System Override; Energy Constructs; Time Synchronization; Omni-Protocol Control; Absolute Calculation."],["Status","Fully restored. All abilities reborn. Mind, code, and purpose returned."],["Quote","“I am not a machine anymore. I am the code that writes destiny.” — M3C@"]]},"Skillner":{"subtitle":"WALLY STEVENS • ANTI-HERO","identity":"FORMER HERO ORGANIZATION MEMBER • CURRENT AFFILIATION: NONE","sections":[["Real Name","Wally Stevens. Alias: Skillner. He once wanted to be a hero and believed in the rules—until he saw what happened when the people behind the title forgot what it meant."],["Backstory","During a mission to protect civilians from the Corrupted, Skillner’s partner prioritized the paycheck over the people. The Corrupted attacked, his partner was killed, and Wally was badly injured while helping civilians escape. He left the hero organization that day. Now he works alone and saves people, but no longer trusts the system."],["Evo Observation Skill","By observing an ability or technique in action, Skillner can reproduce it. The more he observes, the better the copy becomes."],["How It Works","First observation creates a crude imitation. Repeated observation teaches the mechanics, timing, limitations, and applications. Extensive observation improves accuracy. If the ability is within his skill level, he can reproduce it almost perfectly."],["Limitations","If an ability is far beyond his skill level, he creates a bootleg version: potentially weaker, incomplete, unstable, or functionally different. He can still use it, but the result can be dangerous."],["Quote","“I’m not a hero. I’m just skilled.” — Wally Stevens"]]},"Golden Ridge":{"subtitle":"SCE-001 • THE GOLDEN RIDGE","identity":"A towering, faceless golden entity wielding a black sword.","sections":[["Visual Record","The supplied SCE Foundation reference depicts Golden Ridge as a towering humanoid formed from radiant golden light, with enormous wing-like rays extending from its back and a black sword held vertically before him."],["Designation","The surrounding facility labels identify the entity as SCE-001, “The Golden Ridge,” and show an active warning for the entity’s presence."],["Archive Note","This profile records the visual details established by the current reference. Additional abilities and history can be added when their canon is confirmed."]]},"Golden Overdrive":{"subtitle":"GOLDEN BROTHERHOOD • GOLDEN PURIFYING WARRIOR","identity":"Origin: Jhon Ignation • Dimension 5 • Fully purified","sections":[["Origin","Abused and experimented on, Overdrive was enhanced with super speed and strength and became unhinged. In this golden form, he is purified and restored."],["Abilities","Super speed beyond light; super strength; dimensional burst; time-dilation resistance; energy manipulation; corruption immunity; limitless stamina; adaptive combat AI; omni-directional reflexes."],["Restoration","His original memories are restored. He is no longer bound by hate, and his heart guides his power. He fights to protect, not destroy."],["Quote","“I was made to hate… but I chose to save.”"]]},"Golden X":{"subtitle":"GOLDEN BROTHERHOOD • GOLDEN PURIFYING WARRIOR","identity":"Killa Kae X reborn whole through purification","sections":[["Origin","Killa Kae X was split in half by the Golden Ridge. The Corruption rebuilt him, twisting his soul and fusing him with members of chaos. He rose again as Ember Storm, burning with hatred."],["Purification","Dr. L.G. found him and purified the corruption inside him. The embers were cleansed, the hatred was silenced, and he was made whole again. He became Golden X."],["Abilities","Ember Blast; Ember Storm; Hands of Purity; Whole Again; Light’s Resolve. His fire can reach the heat of a neutron star, and his purifying flames burn away nearby corruption."],["Purpose","He fights not for revenge, but for balance."]]},"Golden Code":{"subtitle":"GOLDEN BROTHERHOOD • GOLDEN PURIFYING WARRIOR","identity":"Kill Code restored • Dimension 7","sections":[["Origin","Kill Code was split in half by the Golden Ridge and left for dead. The Corruption rebuilt him, twisted his code, and turned him into Virus."],["Purification","Dr. L.G. purified the corruption inside him. The corruption was extracted and his original code restored. He was reborn—not as Kill Code, not as Virus, but as Golden Code."],["Abilities","Study and analyze systems; hack and purify corrupted code; command machines, drones, and digital networks. His protective bottle grants temporary immunity to damage, while his core USB drive has a limited operating duration."],["Purpose","He does not hack for power. He hacks to protect. He does not break systems—he rewrites them."]]},"Overhorror":{"subtitle":"THE END OF ALL THINGS","identity":"Alternate-timeline Overdrive • Insatiable hunger • Reality-warping threat","sections":[["Origin & Lore","Overhorror is an alternate-timeline version of Overdrive. After an unknown infection reached him, it did not spread—it created an insatiable hunger. He consumed every living being in his timeline that was edible, leaving a trail of extinction."],["Recorded Battles","He defeated Scarlett Ridge, an alternate Golden Ridge, and his blade broke on impact with Overhorror. Dusty tried to erase him through matter manipulation; Overhorror rebuilt himself and killed Dusty, gaining matter manipulation."],["Abilities","Insatiable consumption; matter manipulation; reality-warp redirection; divine absorption; adaptive evolution."],["Threat Note","All recorded events occurred in his base form. No transformations or power-ups were required."]]},"Dr. L.G.":{"subtitle":"THE LIFE INNOVATOR","identity":"Alternate-timeline scientist • Healer • Nature and nanotechnology","sections":[["Origin","In another timeline, the same genius chose a different path. Instead of replacing his body with cold machines, Dr. L.G. crafted a living future, blending nature and nanotechnology to protect life."],["Nature","Compassionate, selfless, and wise. He believes every life has value and that healing is one of the greatest inventions."],["Abilities","Life restoration; regenerative nanobots; healing sap; living armor; nature's harmony; life pact."],["Weakness","He refuses to take a life. His compassion can be exploited, and he believes in redemption even when others do not deserve it."]]},"Unhinged Overdrive":{"subtitle":"CORRUPTED ACCELERATION","identity":"Jhon Ignation • Dimension 5 • Unstable / corrupted","sections":[["Origin","Overdrive pushed past his breaking point. His body could no longer handle the enhancements, causing mutations and energy leakage. The Corruption took hold, twisting him into a relentless predator."],["Abilities","Hyper speed beyond limits; enhanced strength; adaptive armor; energy manipulation; corrupted acceleration; kill intent."],["Notes","This alternate-timeline form is shown in black armor with jagged red and purple energy, a corrupted crow emblem, and a fractured chest core."],["Warning","Extremely dangerous. Do not attempt to engage."]]}}</script>
+<script id="character-face-data" type="application/json">{"Dr. Cyco":"assets/199f34aa4585.jpg","Overdrive":"assets/d152d8a9866b.jpg","Gemineye":"assets/4b3e5ccdd33e.jpg","The Corruption":"assets/b8755f945694.jpg","Override":"assets/27d1d04d27be.jpg","The Gem Observer":"assets/30c2aa74b5a6.jpg","The Bezerker":"assets/cbf48031307b.jpg","The Mistory":"assets/67d5221f9ab2.jpg","OMNI":"assets/57d36cc87816.jpg","Highwire":"assets/bf1d29b7eefc.jpg","Killa Kae X":"assets/71709ea272e2.jpg","Kill Code":"assets/8e0838e9e094.jpg","M3C@":"assets/20573e72e6c5.jpg","Dusty":"assets/17f596019d11.jpg","Starry":"assets/58e4c37dc65d.jpg","Puppeteer":"assets/6d8665214a81.jpg","The Crimson Priest":"assets/434cbd7016b4.jpg","Charcoal":"assets/6aa488f7f856.jpg","Radioactive":"assets/fcfbc0d3bf79.jpg","The Laughing Void":"assets/76b238c343ad.jpg","Mark Ilutionary":"assets/7a51a1381512.jpg","Reaper":"assets/af7e449e0497.jpg","Emomoji":"assets/3288af024d98.jpg","Golden Ridge":"assets/9b5a1e5179a9.jpg","Golden Overdrive":"assets/7f01fc4dc426.jpg","Golden X":"assets/896d89f409a6.jpg","Golden Code":"assets/90240cb6227e.jpg","Golden M3C@":"assets/1cce5131fd17.jpg"}</script>
+<script>
+const characterLore = JSON.parse(document.getElementById('character-lore-data').textContent);
+const characterFaces = JSON.parse(document.getElementById('character-face-data').textContent);
+
+function escapeLore(value){
+  return String(value).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+function openCharacter(name, sourceCard){
+  const modal=document.getElementById('characterModal');
+  const d=characterLore[name];
+  if(!d || !modal) return;
+  const image=document.getElementById('characterModalImage');
+  image.src=characterFaces[name] || (sourceCard ? (sourceCard.querySelector('img') || {}).src : '') || '';
+  image.alt=name+' portrait';
+  document.getElementById('characterModalSubtitle').textContent=d.subtitle || '';
+  document.getElementById('characterModalName').textContent=name;
+  document.getElementById('characterModalIdentity').textContent=d.identity || '';
+  document.getElementById('characterLoreBody').innerHTML=(d.sections||[]).map(s=>
+    '<section class="lore-section"><h4>'+escapeLore(s[0])+'</h4><p>'+escapeLore(s[1])+'</p></section>'
+  ).join('');
+  modal.classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeCharacter(){
+  const modal=document.getElementById('characterModal');
+  if(!modal) return;
+  modal.classList.remove('open');
+  document.body.style.overflow='';
+}
+// Keep every existing profile, then sort the archive into the three requested groups.
+const staging=document.getElementById('characterCardsStaging');
+const goldenGrid=document.getElementById('goldenCharactersGrid');
+const timelineGrid=document.getElementById('alternateTimelinesGrid');
+const baseGrid=document.getElementById('baseCharactersGrid');
+const goldenNames=new Set(['Golden Ridge','Golden Overdrive','Golden X','Golden Code','Golden M3C@']);
+const timelineNames=new Set([]);
+if(staging && goldenGrid && timelineGrid && baseGrid){
+  [...staging.querySelectorAll('.face-card[data-character]')].forEach(card=>{
+    const name=card.dataset.character;
+    if(goldenNames.has(name)) goldenGrid.appendChild(card);
+    else if(timelineNames.has(name)) timelineGrid.appendChild(card);
+    else baseGrid.appendChild(card);
+  });
+}
+document.querySelectorAll('.face-card[data-character]').forEach(card=>{
+  const activate=()=>openCharacter(card.dataset.character,card);
+  card.addEventListener('click',activate);
+  card.addEventListener('keydown',e=>{
+    if(e.key==='Enter' || e.key===' '){ e.preventDefault(); activate(); }
+  });
+});
+const characterModal=document.getElementById('characterModal');
+if(characterModal){
+  characterModal.addEventListener('click',e=>{if(e.target===characterModal) closeCharacter();});
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape') closeCharacter();});
+</script>
+
+<script>
+(function(){
+  const safeGet=(key,fallback)=>{try{const value=localStorage.getItem(key);return value===null?fallback:JSON.parse(value)}catch(_){return fallback}};
+  const safeSet=(key,value)=>{try{localStorage.setItem(key,JSON.stringify(value))}catch(_){}};
+  const displayName=()=>{const input=document.getElementById('chatUsername');return (input?.value||'').trim().slice(0,24)||'Guest'};
+  document.querySelectorAll('.track-card').forEach(card=>{
+    const id=card.dataset.track, likeKey='wse-like-'+id, commentsKey='wse-comments-'+id;
+    const likeButton=card.querySelector('.like-button'), likeCount=card.querySelector('.like-count');
+    const commentsBox=card.querySelector('.comment-list'), count=card.querySelector('.comment-count'), form=card.querySelector('.comment-form');
+    const liked=()=>safeGet(likeKey,false); const setLike=()=>{const next=!liked();safeSet(likeKey,next);likeButton.classList.toggle('liked',next);likeButton.innerHTML=(next?'♥ Liked ':'♡ Like ')+'<span class="like-count">'+(next?'1':'0')+'</span>';};
+    if(liked()){likeButton.classList.add('liked');likeButton.innerHTML='♥ Liked <span class="like-count">1</span>'}
+    likeButton.addEventListener('click',setLike);
+    function renderComments(){const items=safeGet(commentsKey,[]);commentsBox.replaceChildren();items.forEach((item,index)=>{const el=document.createElement('div');el.className='comment-entry';const name=document.createElement('strong');name.textContent=item.name+': ';const body=document.createElement('span');body.textContent=item.text;el.append(name,body);if(item.name===displayName()){const tools=document.createElement('div');tools.className='comment-tools';const edit=document.createElement('button');edit.type='button';edit.className='comment-edit';edit.textContent='Edit your comment';edit.addEventListener('click',()=>{if(el.querySelector('.comment-editbox'))return;const box=document.createElement('textarea');box.className='comment-editbox';box.maxLength=300;box.spellcheck=true;box.lang='en';box.value=item.text;const save=document.createElement('button');save.type='button';save.className='comment-save';save.textContent='Save edit';const cancel=document.createElement('button');cancel.type='button';cancel.className='comment-cancel';cancel.textContent='Cancel';tools.replaceChildren(save,cancel);el.append(box,tools);save.addEventListener('click',()=>{const next=box.value.trim();if(!next)return;const current=safeGet(commentsKey,[]);if(current[index]){current[index].text=next;current[index].editedAt=Date.now();safeSet(commentsKey,current);renderComments()}});cancel.addEventListener('click',renderComments)});tools.append(edit);el.append(tools)}commentsBox.append(el)});count.textContent=items.length}
+    form.addEventListener('submit',e=>{e.preventDefault();const input=form.querySelector('textarea[name="comment"]');const text=input.value.trim();if(!text)return;const items=safeGet(commentsKey,[]);items.push({name:displayName(),text,at:Date.now()});safeSet(commentsKey,items.slice(-100));input.value='';renderComments()});
+    const commentInput=form.querySelector('textarea[name="comment"]'), spellToggle=form.querySelector('.spell-toggle');if(spellToggle&&commentInput){commentInput.spellcheck=spellToggle.checked;commentInput.lang='en';spellToggle.addEventListener('change',()=>{commentInput.spellcheck=spellToggle.checked;commentInput.lang='en';commentInput.focus()})}
+    card.querySelector('.share-button').addEventListener('click',async()=>{const title=card.querySelector('h4').textContent;const url=location.href.split('#')[0]+'#hollowspire-soundtracks';try{if(navigator.share){await navigator.share({title:title+' — Wild_Studio',text:'Listen to '+title+' on Wild_Studio Entertainment.',url})}else if(navigator.clipboard?.writeText){await navigator.clipboard.writeText(title+' — '+url);alert('Track link copied!')}else{prompt('Copy this track link:',url)}}catch(err){if(err.name!=='AbortError')alert('Sharing is not available here. You can copy the page link from your browser.')}});
+    renderComments();
+  });
+  const username=document.getElementById('chatUsername'), messages=document.getElementById('chatMessages'), form=document.getElementById('chatForm'), textArea=document.getElementById('chatText');
+  if(!username||!messages||!form)return;
+  username.value=safeGet('wse-chat-name','');username.addEventListener('change',()=>safeSet('wse-chat-name',username.value.trim().slice(0,24)));
+  const chatSpellToggle=document.getElementById('chatSpellToggle');if(chatSpellToggle&&textArea){textArea.spellcheck=chatSpellToggle.checked;textArea.lang='en';chatSpellToggle.addEventListener('change',()=>{textArea.spellcheck=chatSpellToggle.checked;textArea.lang='en';textArea.focus()})}
+  function renderChat(){const items=safeGet('wse-chat-messages',[]);messages.replaceChildren();if(!items.length){const empty=document.createElement('div');empty.className='comment-entry';empty.textContent='No local messages yet. Start the conversation!';messages.append(empty)}items.forEach(item=>{const box=document.createElement('div');box.className='chat-message';const name=document.createElement('div');name.className='chat-name';name.textContent=item.name;const time=document.createElement('span');time.className='chat-time';time.textContent=new Date(item.at).toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});name.append(time);const body=document.createElement('p');body.textContent=item.text;box.append(name,body);messages.append(box)});messages.scrollTop=messages.scrollHeight}
+  form.addEventListener('submit',e=>{e.preventDefault();const message=textArea.value.trim();if(!message)return;const items=safeGet('wse-chat-messages',[]);items.push({name:displayName(),text:message,at:Date.now()});safeSet('wse-chat-messages',items.slice(-200));textArea.value='';renderChat()});
+  document.getElementById('clearChat').addEventListener('click',()=>{if(confirm('Clear the chat messages saved in this browser?')){safeSet('wse-chat-messages',[]);renderChat()}});
+  renderChat();
+})();
+</script>
+<script>
+// Keep soundtrack playback exclusive: starting one track pauses every other track.
+(function () {
+  const players = Array.from(document.querySelectorAll('.track-card audio'));
+  players.forEach(player => {
+    player.addEventListener('play', () => {
+      players.forEach(other => {
+        if (other !== player && !other.paused) other.pause();
+      });
+    });
+  });
+})();
+</script>
+
+<script>
+(function(){const box=document.getElementById('spriteLightbox');if(!box)return;const big=box.querySelector('img');function openSprite(img){big.src=img.src;big.alt=img.alt;box.classList.add('open');document.body.style.overflow='hidden';}function closeSprite(){box.classList.remove('open');big.removeAttribute('src');document.body.style.overflow='';}document.querySelectorAll('.hollowspire-sprite-image').forEach(img=>{img.addEventListener('click',()=>openSprite(img));img.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openSprite(img);}})});box.addEventListener('click',closeSprite);document.addEventListener('keydown',e=>{if(e.key==='Escape')closeSprite();});})();
+</script>
+</body>
+</html>
